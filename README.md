@@ -118,13 +118,7 @@ Future certifications:
 * JWT
 * bcrypt
 
-## Deployment (Planned)
 
-* AWS EC2
-* Nginx
-* PM2
-
----
 
 # 📁 Project Structure
 
