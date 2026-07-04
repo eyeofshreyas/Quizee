@@ -15,7 +15,9 @@ app.get('/', (req, res) => {
 });
 
 // routes will be mounted here as you build them
-// app.use('/api/auth', authRoutes);
+import authRoutes from './routes/authRoutes.js';
+
+app.use('/api/auth', authRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
