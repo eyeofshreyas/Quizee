@@ -16,19 +16,14 @@ class LeaderboardEngine {
         const currentMonth = new Date().toISOString().slice(0, 7); // e.g. "2026-06"
         const pointsEarned = attempt.score;
 
-        const leaderboardEntry = await LeaderboardModel.findOne({ user_id: userId, month: currentMonth });
-
-        if (leaderboardEntry) {
-            leaderboardEntry.points += pointsEarned;
-            await leaderboardEntry.save();
-        } else {
-            await LeaderboardModel.create({
-                user_id: userId,
-                points: pointsEarned,
-                rank: 0, // ponytail: rank left at 0, real-time/cron recompute is a follow-up
-                month: currentMonth
-            });
-        }
+        await LeaderboardModel.findOneAndUpdate(
+            { user_id: userId, month: currentMonth },
+            {
+                $inc: { points: pointsEarned },
+                $setOnInsert: { rank: 0 } // ponytail: rank left at 0, real-time/cron recompute is a follow-up
+            },
+            { upsert: true }
+        );
 
         return true;
     }
