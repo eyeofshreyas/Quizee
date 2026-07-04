@@ -11,4 +11,9 @@ const loginSchema = Joi.object({
   password: Joi.string().required()
 });
 
-module.exports = { registerSchema, loginSchema };
+const updateProfileSchema = Joi.object({
+  username: Joi.string().trim().min(3).max(30).optional(),
+  profileImage: Joi.string().uri().allow('').optional()
+}).min(1); // at least one field must be provided
+
+module.exports = { registerSchema, loginSchema, updateProfileSchema };

@@ -35,4 +35,26 @@ const loginUser = async ({ email, password }) => {
   return { user, token };
 };
 
-module.exports = { registerUser, loginUser };
+
+const updateProfile = async ({ userId, updates }) => {
+  const allowedFields = ['username', 'profileImage'];
+  const sanitizedUpdates = {};
+
+  for (const key of allowedFields) {
+    if (updates[key] !== undefined) {
+      sanitizedUpdates[key] = updates[key];
+    }
+  }
+
+  const user = await User.findByIdAndUpdate(userId, sanitizedUpdates, {
+    new: true,
+    runValidators: true
+  }).select('-passwordHash');
+
+  if (!user) {
+    throw new ApiError(404, 'User not found');
+  }
+
+  return user;
+};
+module.exports = { registerUser, loginUser, updateProfile };
