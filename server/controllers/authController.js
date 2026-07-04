@@ -1,4 +1,4 @@
-const { registerUser, loginUser } = require('../services/authService.js');
+const { registerUser, loginUser, updateProfile } = require('../services/authService.js');
 const ApiResponse = require('../utils/ApiResponse.js');
 
 const register = async (req, res, next) => {
@@ -27,4 +27,13 @@ const getMe = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login, getMe };
+const updateMe = async (req, res, next) => {
+  try {
+    const user = await updateProfile({ userId: req.user._id, updates: req.body });
+    res.status(200).json(new ApiResponse(200, user, 'Profile updated successfully'));
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { register, login, getMe, updateMe };
