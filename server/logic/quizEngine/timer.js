@@ -1,4 +1,5 @@
 // server/logic/quizEngine/timer.js
+const QuizSessionModel = require('../../../database/models/QuizSession');
 
 class Timer {
 
@@ -6,15 +7,19 @@ class Timer {
 
     /**
      * Start the timer for a quiz session
-     * @param {String} sessionId 
-     * @param {Number} durationMinutes 
+     * @param {String} sessionId
+     * @param {Number} durationMinutes
      */
     async startTimer(sessionId, durationMinutes) {
-        // TODO: Implement timer start logic
-        // This could store the start time and expected end time in a Redis cache or DB
+        const startTime = new Date();
+        await QuizSessionModel.findByIdAndUpdate(sessionId, {
+            duration_minutes: durationMinutes,
+            timer_started_at: startTime
+        });
+
         return {
             sessionId,
-            startTime: new Date(),
+            startTime,
             durationMinutes,
             status: 'ACTIVE'
         };
@@ -22,24 +27,27 @@ class Timer {
 
     /**
      * Get the remaining time for a quiz session
-     * @param {String} sessionId 
+     * @param {String} sessionId
      */
     async getRemainingTime(sessionId) {
-        // TODO: Calculate remaining time based on start time and duration
-        return {
-            sessionId,
-            remainingSeconds: 3600 // Example
-        };
+        const session = await QuizSessionModel.findById(sessionId);
+        if (!session || !session.timer_started_at) {
+            return { sessionId, remainingSeconds: null };
+        }
+
+        const elapsedSeconds = (Date.now() - session.timer_started_at.getTime()) / 1000;
+        const remainingSeconds = Math.max(0, session.duration_minutes * 60 - elapsedSeconds);
+
+        return { sessionId, remainingSeconds: Math.round(remainingSeconds) };
     }
 
     /**
      * Force submit if the timer has expired
-     * @param {String} sessionId 
+     * @param {String} sessionId
      */
     async checkExpiration(sessionId) {
-        // TODO: Check if the current time exceeds the expected end time
-        // If so, trigger an auto-submit
-        return false;
+        const { remainingSeconds } = await this.getRemainingTime(sessionId);
+        return remainingSeconds !== null && remainingSeconds <= 0;
     }
 }
 
