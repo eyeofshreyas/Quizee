@@ -1,4 +1,5 @@
 // server/logic/recommendation/recommendationEngine.js
+const QuestionModel = require('../../../database/models/Question');
 
 class RecommendationEngine {
 
@@ -19,11 +20,8 @@ class RecommendationEngine {
         
         for (const result of attempt.results) {
             if (!result.is_correct) {
-                // TODO: Look up the question's domain and add to missedDomains
-                /*
                 const question = await QuestionModel.findById(result.question_id);
-                missedDomains.add(question.domain_id);
-                */
+                if (question) missedDomains.add(question.domain_id.toString());
             }
         }
 
@@ -31,7 +29,7 @@ class RecommendationEngine {
             recommendations.push({
                 type: 'REVIEW_DOMAIN',
                 message: 'Review specific domains to improve your score.',
-                // data: Array.from(missedDomains)
+                data: Array.from(missedDomains)
             });
         }
 
