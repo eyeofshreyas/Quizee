@@ -1,5 +1,6 @@
 const quizEngine = require('../logic/quizEngine/createQuiz');
 const submitQuizEngine = require('../logic/quizEngine/submitQuiz');
+const timer = require('../logic/quizEngine/timer');
 const QuizSession = require('../models/QuizSession');
 const ApiError = require('../utils/ApiError');
 
@@ -18,11 +19,18 @@ const submitQuiz = async ({ userId, sessionId, answers }) => {
     throw new ApiError(400, 'This quiz session has already been submitted');
   }
 
+  if (await timer.checkExpiration(sessionDoc._id)) {
+    sessionDoc.status = 'COMPLETED';
+    await sessionDoc.save();
+    throw new ApiError(400, 'Quiz time has expired; this session was closed without being scored');
+  }
+
   const quizSession = {
     sessionId: sessionDoc._id,
     certificationId: sessionDoc.cert_id,
     quizType: sessionDoc.quiz_type,
-    mocktestId: null
+    mocktestId: null,
+    questions: sessionDoc.questions
   };
 
   return submitQuizEngine.submitQuiz({ userId, quizSession, answers });
