@@ -1,8 +1,8 @@
 // server/logic/subscription/subscriptionEngine.js
 // Limits mirror the seeded SubscriptionPlan feature lists:
 // Free: "50 Practice Questions", "1 Mock Test" | Pro/Enterprise: unlimited.
-const UserModel = require('../../../database/models/User');
-const QuizSessionModel = require('../../../database/models/QuizSession');
+const UserModel = require('../../models/User');
+const QuizSessionModel = require('../../models/QuizSession');
 
 const TIER_LIMITS = {
     Free: { maxPracticeQuestions: 50, maxMockTests: 1 },

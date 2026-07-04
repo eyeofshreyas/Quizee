@@ -1,5 +1,5 @@
 // server/logic/xp/xpEngine.js
-const UserModel = require('../../../database/models/User');
+const UserModel = require('../../models/User');
 
 class XPEngine {
 

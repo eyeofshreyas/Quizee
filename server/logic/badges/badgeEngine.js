@@ -1,6 +1,6 @@
 // server/logic/badges/badgeEngine.js
-const BadgeModel = require('../../../database/models/Badge');
-const UserBadgeModel = require('../../../database/models/UserBadge');
+const BadgeModel = require('../../models/Badge');
+const UserBadgeModel = require('../../models/UserBadge');
 
 class BadgeEngine {
 

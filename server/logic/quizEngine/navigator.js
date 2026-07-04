@@ -1,5 +1,5 @@
 // server/logic/quizEngine/navigator.js
-const QuizSessionModel = require('../../../database/models/QuizSession');
+const QuizSessionModel = require('../../models/QuizSession');
 
 class Navigator {
 

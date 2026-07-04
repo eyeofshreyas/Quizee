@@ -1,5 +1,5 @@
 // server/logic/quizEngine/timer.js
-const QuizSessionModel = require('../../../database/models/QuizSession');
+const QuizSessionModel = require('../../models/QuizSession');
 
 class Timer {
 
