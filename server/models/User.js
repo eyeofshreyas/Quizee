@@ -58,6 +58,11 @@ const userSchema = new mongoose.Schema(
     lastLogin: {
       type: Date,
       default: null
+    },
+
+    quiz_creation_lock: {
+      type: Boolean,
+      default: false
     }
   },
   {
