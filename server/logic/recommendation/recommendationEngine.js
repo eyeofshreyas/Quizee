@@ -35,7 +35,11 @@ class RecommendationEngine {
             });
         }
 
-        if (attempt.score < 70) {
+        const scorePercent = attempt.total_questions > 0
+            ? (attempt.correct_answers / attempt.total_questions) * 100
+            : 0;
+
+        if (scorePercent < 70) {
             recommendations.push({
                 type: 'PRACTICE_QUIZ',
                 message: 'Consider taking more practice quizzes before attempting another mock exam.'

@@ -1,10 +1,10 @@
 // server/logic/quizEngine/createQuiz.js
 const navigator = require('./navigator');
 const timer = require('./timer');
-// TODO: Replace these with actual model imports when created
-// const CertificationModel = require('../../database/models/Certification');
-// const QuestionModel = require('../../database/models/Question');
-// const QuizSessionModel = require('../../database/models/QuizSession');
+const CertificationModel = require('../../../database/models/Certification');
+const QuestionModel = require('../../../database/models/Question');
+// TODO: Replace with actual model import once QuizSession persistence is designed
+// const QuizSessionModel = require('../../../database/models/QuizSession');
 
 class QuizEngine {
 
@@ -36,33 +36,22 @@ class QuizEngine {
 
         // Step 2: Fetch Certification
         // (Skipping subscription check as requested)
-        /*
         const certification = await CertificationModel.findById(certificationId);
         if (!certification) {
             throw new Error('Certification not found');
         }
-        */
-        // Mocking certification for now based on schema structure
-        const certification = {
-            _id: certificationId,
-            totalQuestions: 65,
-            durationMinutes: 130
-        };
 
         // Step 3: Generate Questions
         // Build the match query based on available filters
-        const matchQuery = { cert_id: certificationId };
+        const matchQuery = { cert_id: certification._id };
         if (domainId) matchQuery.domain_id = domainId;
         if (difficulty) matchQuery.difficulty = difficulty;
-        
+
         // Fetch random questions based on certification's totalQuestions
-        /*
         const questions = await QuestionModel.aggregate([
             { $match: matchQuery },
             { $sample: { size: certification.totalQuestions } }
         ]);
-        */
-        const questions = []; // Mock empty array for now
 
         // Step 4: Create Quiz Session
         const sessionId = `session_${Date.now()}`;
