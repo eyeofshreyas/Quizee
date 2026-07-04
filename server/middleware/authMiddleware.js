@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-import ApiError from '../utils/ApiError.js';
+const jwt = require('jsonwebtoken');
+const User = require('../models/User.js');
+const ApiError = require('../utils/ApiError.js');
 
-export const protect = async (req, res, next) => {
+const protect = async (req, res, next) => {
   try {
     let token;
 
@@ -31,3 +31,5 @@ export const protect = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports = { protect };

@@ -1,9 +1,7 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-import app from './app.js';
-import connectDB from './config/database.js';
-import logger from './utils/logger.js';
+require('dotenv').config();
+const app = require('./app.js');
+const connectDB = require('./config/database.js');
+const logger = require('./utils/logger.js');
 
 connectDB();
 

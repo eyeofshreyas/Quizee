@@ -4,4 +4,4 @@ const logger = {
   warn: (msg) => console.warn(`[WARN] ${new Date().toISOString()} - ${msg}`)
 };
 
-export default logger;
+module.exports = logger;

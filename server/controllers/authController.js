@@ -1,7 +1,7 @@
-import { registerUser, loginUser } from '../services/authService.js';
-import ApiResponse from '../utils/ApiResponse.js';
+const { registerUser, loginUser } = require('../services/authService.js');
+const ApiResponse = require('../utils/ApiResponse.js');
 
-export const register = async (req, res, next) => {
+const register = async (req, res, next) => {
   try {
     const { user, token } = await registerUser(req.body);
     res.status(201).json(new ApiResponse(201, { user, token }, 'User registered successfully'));
@@ -10,7 +10,7 @@ export const register = async (req, res, next) => {
   }
 };
 
-export const login = async (req, res, next) => {
+const login = async (req, res, next) => {
   try {
     const { user, token } = await loginUser(req.body);
     res.status(200).json(new ApiResponse(200, { user, token }, 'Login successful'));
@@ -19,10 +19,12 @@ export const login = async (req, res, next) => {
   }
 };
 
-export const getMe = async (req, res, next) => {
+const getMe = async (req, res, next) => {
   try {
     res.status(200).json(new ApiResponse(200, req.user, 'Current user fetched'));
   } catch (err) {
     next(err);
   }
 };
+
+module.exports = { register, login, getMe };

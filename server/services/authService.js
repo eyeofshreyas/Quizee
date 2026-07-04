@@ -1,9 +1,9 @@
-import bcrypt from 'bcryptjs';
-import User from '../models/User.js';
-import generateToken from '../utils/generateToken.js';
-import ApiError from '../utils/ApiError.js';
+const bcrypt = require('bcryptjs');
+const User = require('../models/User.js');
+const generateToken = require('../utils/generateToken.js');
+const ApiError = require('../utils/ApiError.js');
 
-export const registerUser = async ({ username, email, password }) => {
+const registerUser = async ({ username, email, password }) => {
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw new ApiError(400, 'User already exists with this email');
@@ -17,7 +17,7 @@ export const registerUser = async ({ username, email, password }) => {
   return { user, token };
 };
 
-export const loginUser = async ({ email, password }) => {
+const loginUser = async ({ email, password }) => {
   const user = await User.findOne({ email });
   if (!user) {
     throw new ApiError(401, 'Invalid email or password');
@@ -34,3 +34,5 @@ export const loginUser = async ({ email, password }) => {
   const token = generateToken(user._id);
   return { user, token };
 };
+
+module.exports = { registerUser, loginUser };

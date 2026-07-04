@@ -1,6 +1,6 @@
-import ApiError from '../utils/ApiError.js';
+const ApiError = require('../utils/ApiError.js');
 
-export const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
 
@@ -11,7 +11,9 @@ export const errorHandler = (err, req, res, next) => {
   });
 };
 
-export const notFound = (req, res, next) => {
+const notFound = (req, res, next) => {
   const error = new ApiError(404, `Route not found: ${req.originalUrl}`);
   next(error);
 };
+
+module.exports = { errorHandler, notFound };
