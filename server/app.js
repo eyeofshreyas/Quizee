@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const { corsOptions } = require('./config/cors.js');
 const { errorHandler, notFound } = require('./middleware/errorMiddleware.js');
 const authRoutes = require('./routes/authRoutes.js');
+const quizRoutes = require('./routes/quizRoutes.js');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/quiz', quizRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
