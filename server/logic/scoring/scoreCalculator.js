@@ -1,4 +1,5 @@
 // server/logic/scoring/scoreCalculator.js
+const QuestionModel = require('../../../database/models/Question');
 
 class ScoreCalculator {
 
@@ -6,8 +7,8 @@ class ScoreCalculator {
 
     /**
      * Calculate score based on user answers and quiz session details
-     * @param {Object} quizSession 
-     * @param {Array} answers 
+     * @param {Object} quizSession
+     * @param {Array} answers
      */
     async calculate(quizSession, answers) {
         let score = 0;
@@ -15,13 +16,10 @@ class ScoreCalculator {
         let wrongAnswers = 0;
         const detailedResults = [];
 
-        // TODO: Fetch questions and compare correct_index with selected_option
-        // For example:
-        /*
         for (const ans of answers) {
             const question = await QuestionModel.findById(ans.question_id);
             const isCorrect = question.correct_index === ans.selected_option;
-            
+
             if (isCorrect) {
                 score += 1;
                 correctAnswers += 1;
@@ -36,7 +34,6 @@ class ScoreCalculator {
                 time_taken: ans.time_taken
             });
         }
-        */
 
         return {
             score,

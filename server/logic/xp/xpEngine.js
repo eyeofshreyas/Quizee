@@ -1,4 +1,5 @@
 // server/logic/xp/xpEngine.js
+const UserModel = require('../../../database/models/User');
 
 class XPEngine {
 
@@ -18,25 +19,22 @@ class XPEngine {
         // Bonus for correct answers
         xpGained += (attempt.correct_answers * 5);
 
-        // TODO: Update user total_points and potentially level up
-        /*
         const user = await UserModel.findById(userId);
         user.total_points += xpGained;
-        
+
         // Simple level logic: 1 level per 100 XP
         const newLevel = Math.floor(user.total_points / 100) + 1;
         if (newLevel > user.level) {
             user.level = newLevel;
             // Level up logic could trigger notification
         }
-        
+
         await user.save();
-        */
 
         return {
             xpGained,
-            // newTotal: user.total_points,
-            // newLevel: user.level
+            newTotal: user.total_points,
+            newLevel: user.level
         };
     }
 }

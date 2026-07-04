@@ -1,4 +1,5 @@
 // server/logic/recommendation/recommendationEngine.js
+const QuestionModel = require('../../../database/models/Question');
 
 class RecommendationEngine {
 
@@ -19,11 +20,8 @@ class RecommendationEngine {
         
         for (const result of attempt.results) {
             if (!result.is_correct) {
-                // TODO: Look up the question's domain and add to missedDomains
-                /*
                 const question = await QuestionModel.findById(result.question_id);
-                missedDomains.add(question.domain_id);
-                */
+                if (question) missedDomains.add(question.domain_id.toString());
             }
         }
 
@@ -31,11 +29,15 @@ class RecommendationEngine {
             recommendations.push({
                 type: 'REVIEW_DOMAIN',
                 message: 'Review specific domains to improve your score.',
-                // data: Array.from(missedDomains)
+                data: Array.from(missedDomains)
             });
         }
 
-        if (attempt.score < 70) {
+        const scorePercent = attempt.total_questions > 0
+            ? (attempt.correct_answers / attempt.total_questions) * 100
+            : 0;
+
+        if (scorePercent < 70) {
             recommendations.push({
                 type: 'PRACTICE_QUIZ',
                 message: 'Consider taking more practice quizzes before attempting another mock exam.'

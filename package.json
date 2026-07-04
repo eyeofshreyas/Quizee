@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "verify": "node server/logic/verify.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mongoose": "^9.7.3"
+  }
+}

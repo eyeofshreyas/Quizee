@@ -1,5 +1,7 @@
 // server/logic/quizEngine/submitQuiz.js
-
+const AttemptModel = require('../../../database/models/Attempt');
+const CertificationModel = require('../../../database/models/Certification');
+const QuizSessionModel = require('../../../database/models/QuizSession');
 const scoreCalculator = require('../scoring/scoreCalculator');
 const progressEngine = require('../progress/progressEngine');
 const xpEngine = require('../xp/xpEngine');
@@ -36,7 +38,36 @@ class SubmitQuizEngine {
             correct_answers: scoreResult.correctAnswers,
             wrong_answers: scoreResult.wrongAnswers
         };
-        // TODO: Store attempt in DB
+
+        const totalTimeTaken = scoreResult.detailedResults.reduce((sum, r) => sum + (r.time_taken || 0), 0);
+        const accuracy = scoreResult.totalQuestions > 0
+            ? (scoreResult.correctAnswers / scoreResult.totalQuestions) * 100
+            : 0;
+
+        // Pass/Fail: percentage-based against Certification.passingScore
+        const certification = await CertificationModel.findById(quizSession.certificationId);
+        attempt.passed = certification ? accuracy >= certification.passingScore : null;
+
+        const savedAttempt = await AttemptModel.create({
+            user_id: userId,
+            cert_id: quizSession.certificationId,
+            mocktest_id: quizSession.mocktestId || null,
+            answers: scoreResult.detailedResults.map(r => ({
+                question_id: r.question_id,
+                selected_option: r.selected_option
+            })),
+            score: scoreResult.score,
+            correct_answers: scoreResult.correctAnswers,
+            wrong_answers: scoreResult.wrongAnswers,
+            accuracy,
+            time_taken: totalTimeTaken
+        });
+
+        attempt.attempt_id = savedAttempt._id;
+
+        if (quizSession.sessionId) {
+            await QuizSessionModel.findByIdAndUpdate(quizSession.sessionId, { status: 'COMPLETED' });
+        }
 
         // 3. Update Progress
         if (quizSession.quizType === 'practice' || quizSession.quizType === 'mock') {
