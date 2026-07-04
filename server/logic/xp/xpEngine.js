@@ -1,5 +1,6 @@
 // server/logic/xp/xpEngine.js
 const UserModel = require('../../models/User');
+const ApiError = require('../../utils/ApiError');
 
 class XPEngine {
 
@@ -19,17 +20,19 @@ class XPEngine {
         // Bonus for correct answers
         xpGained += (attempt.correct_answers * 5);
 
-        const user = await UserModel.findById(userId);
-        user.total_points += xpGained;
+        const user = await UserModel.findByIdAndUpdate(
+            userId,
+            { $inc: { total_points: xpGained } },
+            { returnDocument: 'after' }
+        );
+        if (!user) throw new ApiError(404, 'User not found');
 
         // Simple level logic: 1 level per 100 XP
         const newLevel = Math.floor(user.total_points / 100) + 1;
         if (newLevel > user.level) {
             user.level = newLevel;
-            // Level up logic could trigger notification
+            await user.save();
         }
-
-        await user.save();
 
         return {
             xpGained,
