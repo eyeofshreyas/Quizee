@@ -18,3 +18,11 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getMe = async (req, res, next) => {
+  try {
+    res.status(200).json(new ApiResponse(200, req.user, 'Current user fetched'));
+  } catch (err) {
+    next(err);
+  }
+};
