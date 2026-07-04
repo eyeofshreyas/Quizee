@@ -1,5 +1,5 @@
 // server/logic/leaderboard/leaderboardEngine.js
-const LeaderboardModel = require('../../../database/models/Leaderboard');
+const LeaderboardModel = require('../../models/Leaderboard');
 
 class LeaderboardEngine {
 

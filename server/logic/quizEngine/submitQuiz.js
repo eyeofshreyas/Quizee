@@ -1,7 +1,7 @@
 // server/logic/quizEngine/submitQuiz.js
-const AttemptModel = require('../../../database/models/Attempt');
-const CertificationModel = require('../../../database/models/Certification');
-const QuizSessionModel = require('../../../database/models/QuizSession');
+const AttemptModel = require('../../models/Attempt');
+const CertificationModel = require('../../models/Certification');
+const QuizSessionModel = require('../../models/QuizSession');
 const scoreCalculator = require('../scoring/scoreCalculator');
 const progressEngine = require('../progress/progressEngine');
 const xpEngine = require('../xp/xpEngine');

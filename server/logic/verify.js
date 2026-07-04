@@ -5,12 +5,12 @@
 require('dotenv').config();
 const assert = require('assert');
 const { connect, mongoose } = require('../../database/connection');
-const Certification = require('../../database/models/Certification');
-const Question = require('../../database/models/Question');
-const User = require('../../database/models/User');
-const Attempt = require('../../database/models/Attempt');
-const UserProgress = require('../../database/models/UserProgress');
-const QuizSession = require('../../database/models/QuizSession');
+const Certification = require('../models/Certification');
+const Question = require('../models/Question');
+const User = require('../models/User');
+const Attempt = require('../models/Attempt');
+const UserProgress = require('../models/UserProgress');
+const QuizSession = require('../models/QuizSession');
 const createQuiz = require('./quizEngine/createQuiz');
 const submitQuiz = require('./quizEngine/submitQuiz');
 const navigator = require('./quizEngine/navigator');

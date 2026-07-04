@@ -1,5 +1,5 @@
 // server/logic/scoring/scoreCalculator.js
-const QuestionModel = require('../../../database/models/Question');
+const QuestionModel = require('../../models/Question');
 
 class ScoreCalculator {
 

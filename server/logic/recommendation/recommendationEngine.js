@@ -1,5 +1,5 @@
 // server/logic/recommendation/recommendationEngine.js
-const QuestionModel = require('../../../database/models/Question');
+const QuestionModel = require('../../models/Question');
 
 class RecommendationEngine {
 

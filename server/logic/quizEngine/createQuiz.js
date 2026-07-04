@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const navigator = require('./navigator');
 const timer = require('./timer');
 const subscriptionEngine = require('../subscription/subscriptionEngine');
-const CertificationModel = require('../../../database/models/Certification');
-const QuestionModel = require('../../../database/models/Question');
-const QuizSessionModel = require('../../../database/models/QuizSession');
+const CertificationModel = require('../../models/Certification');
+const QuestionModel = require('../../models/Question');
+const QuizSessionModel = require('../../models/QuizSession');
 
 class QuizEngine {
 

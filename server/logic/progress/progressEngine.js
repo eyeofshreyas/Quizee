@@ -1,5 +1,5 @@
 // server/logic/progress/progressEngine.js
-const UserProgressModel = require('../../../database/models/UserProgress');
+const UserProgressModel = require('../../models/UserProgress');
 
 class ProgressEngine {
 
