@@ -12,27 +12,28 @@ class ProgressEngine {
      * @param {Object} attempt
      */
     async updateProgress(userId, certId, attempt) {
-        const progress = await UserProgressModel.findOne({ user_id: userId, cert_id: certId });
         const timeTaken = attempt.results.reduce((sum, r) => sum + (r.time_taken || 0), 0);
 
-        if (progress) {
-            progress.questions_solved += attempt.total_questions;
-            progress.correct_answers += attempt.correct_answers;
-            progress.accuracy = (progress.correct_answers / progress.questions_solved) * 100;
-            progress.study_time += timeTaken;
-            progress.last_activity = new Date();
-            await progress.save();
-        } else {
-            await UserProgressModel.create({
-                user_id: userId,
-                cert_id: certId,
-                questions_solved: attempt.total_questions,
-                correct_answers: attempt.correct_answers,
-                accuracy: attempt.total_questions > 0 ? (attempt.correct_answers / attempt.total_questions) * 100 : 0,
-                study_time: timeTaken,
-                last_activity: new Date()
-            });
-        }
+        const progress = await UserProgressModel.findOneAndUpdate(
+            { user_id: userId, cert_id: certId },
+            {
+                $inc: {
+                    questions_solved: attempt.total_questions,
+                    correct_answers: attempt.correct_answers,
+                    study_time: timeTaken
+                },
+                $set: { last_activity: new Date() }
+            },
+            { upsert: true, returnDocument: 'after' }
+        );
+
+        // accuracy is derived from the now-authoritative counters above;
+        // recomputing it here (rather than via $inc) keeps it correct even
+        // if this write raced with another one for the same user/cert
+        progress.accuracy = progress.questions_solved > 0
+            ? (progress.correct_answers / progress.questions_solved) * 100
+            : 0;
+        await progress.save();
 
         return true;
     }
