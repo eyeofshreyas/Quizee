@@ -5,6 +5,7 @@ const { corsOptions } = require('./config/cors.js');
 const { errorHandler, notFound } = require('./middleware/errorMiddleware.js');
 const authRoutes = require('./routes/authRoutes.js');
 const quizRoutes = require('./routes/quizRoutes.js');
+const progressRoutes = require('./routes/progressRoutes.js');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/quiz', quizRoutes);
+app.use('/api/progress', progressRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
