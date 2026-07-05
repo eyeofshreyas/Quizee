@@ -23,7 +23,8 @@ const subscriptionPlanSchema = new mongoose.Schema(
     }
   },
   {
-    timestamps: true
+    timestamps: true,
+    collection: "subscription_plans" // seeded data already lives here, not the Mongoose-default "subscriptionplans"
   }
 );
 
