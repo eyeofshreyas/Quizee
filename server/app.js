@@ -10,6 +10,7 @@ const leaderboardRoutes = require('./routes/leaderboardRoutes.js');
 const badgeRoutes = require('./routes/badgeRoutes.js');
 const certificationRoutes = require('./routes/certificationRoutes.js');
 const subscriptionRoutes = require('./routes/subscriptionRoutes.js');
+const paymentRoutes = require('./routes/paymentRoutes.js');
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/badges', badgeRoutes);
 app.use('/api/certifications', certificationRoutes);
 app.use('/api/subscription', subscriptionRoutes);
+app.use('/api/payments', paymentRoutes);
+
 
 app.use(notFound);
 app.use(errorHandler);
