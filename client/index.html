@@ -1,0 +1,473 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Quizee | AWS Certification Exam Prep</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#ff9900",
+                        "secondary-fixed-dim": "#bbc7db",
+                        "surface-tint": "#8a5100",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d7e3f7",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary-container": "#576474",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container": "#eceef0",
+                        "secondary-container": "#d4e1f5",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface": "#f7f9fb",
+                        "on-primary-fixed-variant": "#693c00",
+                        "on-surface": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "inverse-primary": "#ffb86f",
+                        "primary-fixed-dim": "#ffb86f",
+                        "on-surface-variant": "#554434",
+                        "background": "#f7f9fb",
+                        "outline-variant": "#dbc2ad",
+                        "outline": "#887361",
+                        "on-tertiary-container": "#004e34",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#653a00",
+                        "secondary": "#535f70",
+                        "primary-fixed": "#ffdcbd",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#101c2b",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed": "#2c1600",
+                        "on-background": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "primary": "#8a5100",
+                        "tertiary-container": "#30c88f",
+                        "on-secondary-fixed-variant": "#3c4858",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary": "#006c49"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xs": "8px",
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "button-text": ["Manrope"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "button-text": ["15px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="index.css" rel="stylesheet">
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest/80 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant shadow-sm">
+<nav class="max-w-container-max mx-auto px-lg py-sm flex justify-between items-center">
+<div class="flex items-center gap-xl">
+<div class="flex items-center gap-xs">
+<img alt="Quizee Logo" class="w-8 h-8 object-contain" src="assets/logo.png">
+<span class="text-headline-md font-headline-lg text-primary tracking-tight">Quizee</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">Certifications</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md" href="#">Practice</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md" href="#">Mock Exams</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md" href="#">Leaderboard</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden sm:flex items-center gap-sm mr-md">
+<button class="p-xs hover:bg-surface-container-high rounded-lg transition-all text-secondary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs hover:bg-surface-container-high rounded-lg transition-all text-secondary">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<button class="bg-primary text-white px-lg py-sm rounded-lg font-button-text hover:bg-primary/90 transition-all active:scale-95">
+                    Start Free Trial
+                </button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-20 pb-32">
+<div class="max-w-container-max mx-auto px-lg flex flex-col md:flex-row items-center gap-xl">
+<div class="flex-1 text-center md:text-left z-10">
+<div class="inline-flex items-center gap-xs bg-tertiary/10 text-tertiary px-sm py-xs rounded-full mb-lg">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md">TRUSTED BY 50,000+ CLOUD ENGINEERS</span>
+</div>
+<h1 class="text-display-lg font-display-lg text-on-surface mb-md leading-tight">
+                        Pass Your AWS Certification on the <span class="text-primary">First Attempt</span>
+</h1>
+<p class="text-body-lg text-on-surface-variant mb-xl max-w-2xl mx-auto md:mx-0">
+                        Practice thousands of AWS exam questions, take realistic mock exams, and learn with AI-powered explanations designed for maximum retention.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-md justify-center md:justify-start">
+<button class="bg-primary text-white px-xl py-md rounded-lg font-button-text text-[18px] hover:shadow-lg hover:translate-y-[-2px] transition-all">
+                            Start Free
+                        </button>
+<button class="border-2 border-on-surface text-on-surface px-xl py-md rounded-lg font-button-text text-[18px] hover:bg-surface-container transition-all">
+                            View Certifications
+                        </button>
+</div>
+<div class="mt-xl flex items-center gap-sm justify-center md:justify-start text-on-surface-variant">
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest" data-alt="A professional headshot of a female software engineer smiling confidently, soft studio lighting, high-end professional profile picture." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqD-aWymbW73LL1NgP3hKSgkVAdlFr-Ietnrzmzp9IpuqsICEZGJ-wAxcTlgGR42MT2Cwpy9OHA5u2ubd6N9yOwWf3iovedxYpxeV5h56FNDN48MNh87Qi_tQ2eTjJ9ygrusOi4M1JSlLTTqQIKBGudL2Uwddnb3T93WXhVluK8zMxnb_jWXZGdgD3wFwXA0qR-YvX7D3yEnd7BAiZxAiNcx0JkiNKNX4IEt9tK1hiYl5wQzNApWo5gWH9ocoqciuBMfnj27fxaKY')"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest" data-alt="A portrait of a male technical architect in professional attire, clear skin, neutral background, sharp focus, professional lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClvwJaLHmsk05EZQHBGGtZP5I7VMzPrXiXTu4Dr6dwGNHTuYQ7PC63hB-aD_sxNEyqtWyd9EcAO-ryCLQDHqYh811NY7yOYYga6f-6XtIajJCqV4X5tzMFPx-b3Bb411NHJuiDWjTr3lw3cNiA1oACLZUTq7vLVmGUAiUMdEm_NywF3xb9vnLR_QBFCt9p4mlCX1ZHTLQhE7GqmW4KWSeNM0LS-FXkqKVrvQxUUyPHfFE0O1SIVJyyDZCGfWuCyI-LkiGiFDOmJyw')"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest" data-alt="A diverse professional avatar of a cloud consultant, modern office environment blurred in the background, cinematic lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtumegvEwJCGPBhYdKJ81oUgGIM06qB2a-ZBPodfJXL7YX7obY0QWfTIuHzVu7DFfPuNXX_fX-WuaKRZNj5YMrEysx2_PRQEzookeKTgq1BauELodv8AhrqBS-Lbztv6ZtQtML51pyYPh7cIsEW3Xfty6RAXNuBJEVMhQC2eZB9kp3yeI3ao8SSgKmoDB0KqeGMO-gWa-uM9rQqDON2DvLZqxSDFdktP4BmdTSSqnyCqc2OirwnHmnC7HilvraVaiJglXXwh5Jfr8')"></div>
+</div>
+<span class="text-label-md font-label-md">Join successful cloud pros</span>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="relative z-10 floating-element">
+<img alt="AWS Infrastructure Illustration" class="w-full h-auto drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC87gsVoUkmT-unDygooPOn5Xi1TW0cwUt-KkVNxZihql9PsJi8uIY1p_U5If6MgsXgEYkQ8oZdiovR18NCqdnUDtkbVGGnxmztvKhWLF5y6WG1FpfpByjybduLpWK4qxdxBvR031DcfP7VwmNkWqTRYHuu_oqz0CZi9sSASIzisNpeE1qh-RraV6Ta-g6H1TZJUrBee-P15Sr6_Qb6q9vivk6JevJyMtfXCGCp7w1En2aChOqNry3oVl-IH1wZSfESenXyhLyJkqc">
+</div>
+<!-- Decorative background blur -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 blur-[100px] -z-10 rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-lg">
+<div class="text-center mb-20">
+<h2 class="text-headline-lg font-headline-lg mb-sm">Everything You Need to Scale</h2>
+<p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto">Engineered by AWS Solutions Architects to mimic the actual exam experience with technical rigor.</p>
+</div>
+<div class="bento-grid">
+<!-- Practice Questions -->
+<div class="bento-item-8 glass-card p-xl rounded-xl flex flex-col justify-between group hover:border-primary/50 transition-all">
+<div>
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-lg">
+<span class="material-symbols-outlined text-[32px]">quiz</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-xs">Practice Questions</h3>
+<p class="text-on-surface-variant max-w-lg">Over 5,000+ domain-specific questions covering every corner of the AWS syllabus. Updated weekly for current exam versions.</p>
+</div>
+<div class="mt-xl h-48 bg-surface-container-highest rounded-lg overflow-hidden border border-outline-variant relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent"></div>
+<div class="p-md">
+<div class="bg-white p-sm rounded border border-outline-variant shadow-sm w-3/4 mb-sm transform group-hover:translate-x-4 transition-transform">
+<div class="h-2 w-1/2 bg-surface-container-highest rounded mb-xs"></div>
+<div class="h-2 w-3/4 bg-surface-container-low rounded"></div>
+</div>
+<div class="bg-white p-sm rounded border border-primary/20 shadow-sm w-3/4 ml-auto transform group-hover:-translate-x-4 transition-transform">
+<div class="flex items-center gap-xs mb-xs">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="h-2 w-1/3 bg-primary/20 rounded"></div>
+</div>
+<div class="h-2 w-5/6 bg-surface-container-low rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Tutor -->
+<div class="bento-item-4 glass-card p-xl rounded-xl flex flex-col bg-inverse-surface text-inverse-on-surface hover:scale-[1.02] transition-all">
+<div class="w-12 h-12 bg-tertiary rounded-lg flex items-center justify-center text-on-tertiary mb-lg">
+<span class="material-symbols-outlined text-[32px]">psychology</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-xs">AI Tutor</h3>
+<p class="text-surface-variant text-body-md mb-lg">Stuck on a concept? Our AI explains complex architectural patterns using metaphors and real-world scenarios.</p>
+<div class="mt-auto pt-lg border-t border-surface-variant/20">
+<div class="flex items-center gap-sm">
+<span class="text-tertiary-fixed-dim font-label-md text-label-md">POWERED BY LLM</span>
+<div class="flex-1 h-1 bg-surface-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-3/4"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Analytics -->
+<div class="bento-item-4 glass-card p-xl rounded-xl">
+<div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary mb-lg">
+<span class="material-symbols-outlined text-[32px]">insights</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-xs">Progress Analytics</h3>
+<p class="text-on-surface-variant mb-md">Visualize your readiness with heatmaps and domain breakdown scores.</p>
+<div class="flex gap-1 h-12 items-end">
+<div class="w-full bg-primary/20 rounded-t h-1/2"></div>
+<div class="w-full bg-primary/40 rounded-t h-3/4"></div>
+<div class="w-full bg-primary/60 rounded-t h-2/3"></div>
+<div class="w-full bg-primary/80 rounded-t h-5/6"></div>
+<div class="w-full bg-primary rounded-t h-full"></div>
+</div>
+</div>
+<!-- Leaderboards -->
+<div class="bento-item-8 glass-card p-xl rounded-xl flex items-center gap-xl">
+<div class="flex-1">
+<div class="w-12 h-12 bg-on-primary-fixed-variant/10 rounded-lg flex items-center justify-center text-on-primary-fixed-variant mb-lg">
+<span class="material-symbols-outlined text-[32px]">emoji_events</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-xs">Study Leaderboards</h3>
+<p class="text-on-surface-variant">Stay motivated by competing with a global community of AWS aspirants. Earn badges and climb the ranks.</p>
+</div>
+<div class="hidden sm:block flex-1 bg-surface-container p-md rounded-lg border border-outline-variant">
+<div class="flex items-center justify-between p-sm bg-white rounded border-b border-outline-variant mb-xs">
+<span class="font-label-md text-label-md text-primary">01</span>
+<span class="font-label-md text-label-md">Alex K.</span>
+<span class="font-label-md text-label-md">4,820 pts</span>
+</div>
+<div class="flex items-center justify-between p-sm bg-white rounded border-b border-outline-variant mb-xs">
+<span class="font-label-md text-label-md text-secondary">02</span>
+<span class="font-label-md text-label-md">Maria S.</span>
+<span class="font-label-md text-label-md">4,750 pts</span>
+</div>
+<div class="flex items-center justify-between p-sm bg-white rounded border-b border-outline-variant">
+<span class="font-label-md text-label-md text-secondary">03</span>
+<span class="font-label-md text-label-md">Chen L.</span>
+<span class="font-label-md text-label-md">4,610 pts</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Certifications Horizontal Scroll/Cards -->
+<section class="py-24 bg-surface">
+<div class="max-w-container-max mx-auto px-lg">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-headline-lg font-headline-lg mb-sm">Master Any Certification</h2>
+<p class="text-body-lg text-on-surface-variant">Tailored prep courses for every AWS path.</p>
+</div>
+<button class="text-primary font-button-text flex items-center gap-xs hover:underline">
+                        View All Path <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-md">
+<!-- Cloud Practitioner -->
+<div class="glass-card p-lg rounded-xl flex flex-col items-center text-center hover:translate-y-[-8px] transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-on-secondary-container">cloud</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-xs">Cloud Practitioner</h4>
+<span class="font-label-md text-[12px] uppercase text-on-surface-variant px-xs py-base bg-surface-container rounded mb-md">Foundational</span>
+<div class="mt-auto text-primary font-bold text-label-md">98% Pass Rate</div>
+</div>
+<!-- Solutions Architect -->
+<div class="glass-card p-lg rounded-xl border-2 border-primary/20 flex flex-col items-center text-center hover:translate-y-[-8px] transition-all cursor-pointer relative">
+<div class="absolute -top-3 px-sm py-base bg-primary text-white text-[10px] font-bold rounded-full uppercase tracking-widest">Most Popular</div>
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-white">architecture</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-xs">Solutions Architect</h4>
+<span class="font-label-md text-[12px] uppercase text-on-surface-variant px-xs py-base bg-surface-container rounded mb-md">Associate</span>
+<div class="mt-auto text-primary font-bold text-label-md">95% Pass Rate</div>
+</div>
+<!-- Developer -->
+<div class="glass-card p-lg rounded-xl flex flex-col items-center text-center hover:translate-y-[-8px] transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-tertiary-container flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-on-tertiary-container">code</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-xs">Developer</h4>
+<span class="font-label-md text-[12px] uppercase text-on-surface-variant px-xs py-base bg-surface-container rounded mb-md">Associate</span>
+<div class="mt-auto text-primary font-bold text-label-md">92% Pass Rate</div>
+</div>
+<!-- SysOps -->
+<div class="glass-card p-lg rounded-xl flex flex-col items-center text-center hover:translate-y-[-8px] transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-on-secondary-fixed">settings_input_component</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-xs">SysOps Admin</h4>
+<span class="font-label-md text-[12px] uppercase text-on-surface-variant px-xs py-base bg-surface-container rounded mb-md">Associate</span>
+<div class="mt-auto text-primary font-bold text-label-md">89% Pass Rate</div>
+</div>
+<!-- Security -->
+<div class="glass-card p-lg rounded-xl flex flex-col items-center text-center hover:translate-y-[-8px] transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-error-container flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[32px] text-on-error-container">lock</span>
+</div>
+<h4 class="font-headline-md text-[18px] mb-xs">Security</h4>
+<span class="font-label-md text-[12px] uppercase text-on-surface-variant px-xs py-base bg-surface-container rounded mb-md">Specialty</span>
+<div class="mt-auto text-primary font-bold text-label-md">87% Pass Rate</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 bg-inverse-surface text-inverse-on-surface overflow-hidden relative">
+<div class="max-w-container-max mx-auto px-lg relative z-10">
+<div class="flex flex-col md:flex-row gap-xl items-center">
+<div class="flex-1">
+<span class="text-tertiary-fixed font-label-md text-label-md mb-md block">STUDENT SUCCESS</span>
+<h2 class="text-headline-lg font-headline-lg mb-lg">Join the thousands who elevated their careers.</h2>
+<div class="flex items-center gap-md">
+<div class="h-[2px] w-12 bg-primary"></div>
+<p class="text-surface-variant italic">"Quizee was the difference between guessing and knowing. The AI explanations cleared up every doubt I had about VPC peering."</p>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-md">
+<div class="bg-surface/10 p-lg rounded-xl backdrop-blur-md">
+<div class="flex gap-1 text-primary mb-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md mb-md">Passed SAA-C03 with 840/1000. The mock exams are scary accurate!</p>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant/20" data-alt="Close up profile picture of a young professional man wearing a smart casual shirt, focused and friendly expression, tech company office background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlIpQxtL22VTZz3rp-F0rwC7Bgh0sd0PniwNfqMb6CEQeHngNjSBRyZXasd2xjtIzHDSLjTgNkc1jzbKmvvSBHzMWIanThwlIebZ8rPlKU9y3Doi99FizYizVBUezjdhoXGrMGNx5X_Ud9pWbM7grC7HBX6G_YQk6X_1x8nAvdx883LfyS5VN7BgaB0yGo_TvAO7m-Os88R8dV_51rI8sO_rYDZam2z7Mq0SmdMDtB9tXv2aPXbZJ8jlkIIrU8UQ40T9xY-qRFpDw')"></div>
+<div>
+<p class="font-bold text-label-md">James T.</p>
+<p class="text-[12px] text-surface-variant">AWS Certified SA</p>
+</div>
+</div>
+</div>
+<div class="bg-surface/10 p-lg rounded-xl backdrop-blur-md mt-lg sm:mt-0">
+<div class="flex gap-1 text-primary mb-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md mb-md">The Leaderboard kept me studying every single night. Competitive but fun.</p>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant/20" data-alt="A portrait of a female developer with glasses, smiling warmly, professional indoor lighting, vibrant and clear aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCN_hhfeTxTroBiHKXttHwQEpHOAoocSphYz-ghiRqvcGJDMXqPaRTclluPTP7YBNYCqk54WIIQMPhsoViVmPYCNT09Wx2IgmA_dpFmAEqZXNHCXPHiP9s8S98YJI48cETrNUKXLePoq2qCsuE50GHQGnKA6UmdQ73m2I2yNLU6cwUBr2i5hLoJ9yn1LIMaqzTQSLNwggQxm5szdBMR47ogLB-MAISMVEcyjRniHBp2Ifs055k1EZI_UoufBB0gdVoM41-LqME49m0')"></div>
+<div>
+<p class="font-bold text-label-md">Sarah W.</p>
+<p class="text-[12px] text-surface-variant">Cloud Practitioner</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary/10 blur-[100px] rounded-full"></div>
+</section>
+<!-- Pricing Section -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-lg">
+<div class="text-center mb-16">
+<h2 class="text-headline-lg font-headline-lg mb-sm">Simple, Transparent Pricing</h2>
+<p class="text-body-lg text-on-surface-variant">Choose the plan that fits your study pace.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Free -->
+<div class="glass-card p-xl rounded-xl flex flex-col hover:border-outline transition-all">
+<h3 class="text-headline-md font-headline-md mb-xs">Free</h3>
+<p class="text-on-surface-variant mb-lg">Get a taste of the platform.</p>
+<div class="text-[40px] font-bold mb-lg">$0 <span class="text-body-md font-normal text-on-surface-variant">/ forever</span></div>
+<ul class="space-y-sm mb-xl">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> 100 Practice Questions</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> 1 Mini Mock Exam</li>
+<li class="flex items-center gap-xs text-on-surface-variant/50"><span class="material-symbols-outlined">cancel</span> AI Tutor Access</li>
+</ul>
+<button class="mt-auto w-full py-md border-2 border-primary text-primary font-button-text rounded-lg hover:bg-primary/5 transition-all">Get Started</button>
+</div>
+<!-- Pro -->
+<div class="glass-card p-xl rounded-xl border-2 border-primary flex flex-col relative scale-105 shadow-xl">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-md py-xs rounded-full font-label-md text-[12px]">BEST VALUE</div>
+<h3 class="text-headline-md font-headline-md mb-xs">Pro</h3>
+<p class="text-on-surface-variant mb-lg">Most popular for exam takers.</p>
+<div class="text-[40px] font-bold mb-lg">$29 <span class="text-body-md font-normal text-on-surface-variant">/ 3 months</span></div>
+<ul class="space-y-sm mb-xl">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> Unlimited Practice Questions</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> 15 Full Mock Exams</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> AI Tutor Explanations</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> Analytics Dashboard</li>
+</ul>
+<button class="mt-auto w-full py-md bg-primary text-white font-button-text rounded-lg hover:shadow-lg transition-all">Go Pro Now</button>
+</div>
+<!-- Enterprise -->
+<div class="glass-card p-xl rounded-xl flex flex-col hover:border-outline transition-all">
+<h3 class="text-headline-md font-headline-md mb-xs">Enterprise</h3>
+<p class="text-on-surface-variant mb-lg">For teams and organizations.</p>
+<div class="text-[40px] font-bold mb-lg">Custom</div>
+<ul class="space-y-sm mb-xl">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> Team Progress Reports</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> Dedicated Support</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary">check_circle</span> Custom Exam Creation</li>
+</ul>
+<button class="mt-auto w-full py-md border-2 border-on-surface text-on-surface font-button-text rounded-lg hover:bg-surface-container transition-all">Contact Sales</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 bg-surface relative overflow-hidden">
+<div class="max-w-container-max mx-auto px-lg">
+<div class="bg-primary rounded-[32px] p-xl md:p-32 text-center text-white relative overflow-hidden shadow-2xl">
+<h2 class="text-display-lg font-display-lg mb-md">Ready to get certified?</h2>
+<p class="text-body-lg text-white/80 mb-xl max-w-2xl mx-auto">Join thousands of students who have already used Quizee to pass their AWS exams. Start your free trial today.</p>
+<div class="flex flex-col sm:flex-row gap-md justify-center">
+<button class="bg-white text-primary px-xl py-md rounded-lg font-button-text text-[18px] hover:shadow-lg transition-all">Get Started Free</button>
+<button class="border border-white/40 text-white px-xl py-md rounded-lg font-button-text text-[18px] hover:bg-white/10 transition-all">Chat with an Expert</button>
+</div>
+<!-- Decorative shapes -->
+<div class="absolute -top-12 -left-12 w-48 h-48 bg-white/10 blur-[40px] rounded-full"></div>
+<div class="absolute -bottom-12 -right-12 w-64 h-64 bg-white/10 blur-[60px] rounded-full"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest py-xl border-t border-outline-variant">
+<div class="max-w-container-max mx-auto px-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-xs">
+<img alt="Quizee Logo Footer" class="w-6 h-6 object-contain" src="assets/logo.png">
+<span class="font-headline-md text-on-surface text-[20px] font-bold">Quizee</span>
+</div>
+<p class="text-body-md text-on-surface-variant max-w-sm">© 2024 Quizee. AWS Certified Preparation Platform. Not affiliated with Amazon Web Services.</p>
+</div>
+<div class="flex flex-wrap gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script src="index.js"></script>
+</body></html>
