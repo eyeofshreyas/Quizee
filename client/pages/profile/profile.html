@@ -1,0 +1,388 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Settings | Quizee AWS Prep</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="profile.css" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8ea",
+                        "primary-container": "#ff9900",
+                        "on-tertiary-container": "#004e34",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "outline-variant": "#dbc2ad",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#ffb86f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#30c88f",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#ffb86f",
+                        "secondary-fixed-dim": "#bbc7db",
+                        "primary-fixed": "#ffdcbd",
+                        "secondary-fixed": "#d7e3f7",
+                        "secondary-container": "#d4e1f5",
+                        "on-secondary-fixed": "#101c2b",
+                        "secondary": "#535f70",
+                        "on-surface-variant": "#554434",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#3c4858",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#8a5100",
+                        "error-container": "#ffdad6",
+                        "surface": "#f7f9fb",
+                        "on-primary-fixed-variant": "#693c00",
+                        "on-primary-container": "#653a00",
+                        "surface-bright": "#f7f9fb",
+                        "outline": "#887361",
+                        "on-primary-fixed": "#2c1600",
+                        "inverse-surface": "#2d3133",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-variant": "#e0e3e5",
+                        "surface-dim": "#d8dadc",
+                        "primary": "#8a5100",
+                        "tertiary": "#006c49",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-secondary-container": "#576474",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed": "#002113",
+                        "background": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xs": "8px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "button-text": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "label-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "button-text": ["15px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar Shared Component Mapping -->
+<aside class="hidden md:flex bg-surface dark:bg-surface-dim border-r border-outline-variant fixed left-0 h-full w-64 flex-col py-lg px-md space-y-md z-50">
+<div class="flex flex-col space-y-xs px-sm">
+<div class="flex items-center space-x-sm mb-lg">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">quiz</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Quizee</h1>
+<p class="text-[10px] uppercase tracking-wider text-secondary font-bold">AWS Certification Prep</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="space-y-1">
+<a class="flex items-center space-x-md px-md py-sm text-secondary font-medium hover:bg-surface-container-high transition-all rounded-lg group" href="../dashboard/dashboard.html">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center space-x-md px-md py-sm text-secondary font-medium hover:bg-surface-container-high transition-all rounded-lg group" href="../quiz/quize.html">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">quiz</span>
+<span>Practice Exams</span>
+</a>
+<a class="flex items-center space-x-md px-md py-sm text-secondary font-medium hover:bg-surface-container-high transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">smart_toy</span>
+<span>AI Tutor</span>
+</a>
+<a class="flex items-center space-x-md px-md py-sm text-secondary font-medium hover:bg-surface-container-high transition-all rounded-lg group" href="../progress/progress.html">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center space-x-md px-md py-sm text-secondary font-medium hover:bg-surface-container-high transition-all rounded-lg group" href="../leaderboard/leaderboard.html">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">leaderboard</span>
+<span>Leaderboard</span>
+</a>
+<a class="flex items-center space-x-md px-md py-sm text-primary font-bold bg-primary-container/10 border-r-4 border-primary rounded-r-lg" href="profile.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+<!-- CTA -->
+<div class="px-md mt-auto pb-md">
+<a class="w-full bg-primary text-white py-sm rounded-xl font-button-text shadow-lg hover:shadow-primary/20 transition-all active:scale-95 block text-center" href="../subscription/subscription.html">
+                    Upgrade to Pro
+                </a>
+</div>
+<!-- Footer Tabs -->
+<div class="border-t border-outline-variant pt-md space-y-1 px-md">
+<a class="flex items-center space-x-md px-md py-sm text-secondary font-medium hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center space-x-md px-md py-sm text-error font-medium hover:bg-error-container/20 transition-all rounded-lg" href="../login/login.html">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 h-full flex flex-col relative bg-surface-container-low custom-scrollbar overflow-y-auto">
+<!-- Top Bar (Desktop Only Hidden or Floating) -->
+<header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md px-xl py-md flex items-center justify-between border-b border-outline-variant/30">
+<div class="flex items-center space-x-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Settings</h2>
+<span class="bg-primary/10 text-primary text-[11px] font-label-md px-sm py-1 rounded-full border border-primary/20 uppercase tracking-widest">Professional Tier</span>
+</div>
+<div class="flex items-center space-x-lg">
+<div class="flex space-x-md">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer transition-colors">help</span>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional cloud solutions architect in a minimalist workspace, wearing a clean charcoal grey sweater. The background features warm ambient lighting and soft-focus technology elements. High-end SaaS photography style with natural lighting and professional composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjOtWvGAZ26IrQ9i90QPGxnOI3PJuiYYx1pCBEqGFDkK5A-u-LaPqk_O9aKqhuJtVyCzpfiSom0bcV0gkDzGdapuGQ4xovnZ3aM-e8Cxp0Ri2yHmao9jT2cODxjKB8NJ1wnZYXnJHbXXYRkrWKvhX53N3V5eqLJkDhkNVCbnfh4JmtXcOTjUb2d1DQpbUBrnPC7dbJJL-g_tLsvxwv0qJgvLvb8adzzN9KXA-Jlrtq48SUay3lQr2Cdyo6ocieg1zinS-yeUafyaU">
+</div>
+</div>
+</header>
+<!-- Settings Content Container -->
+<div class="max-w-container-max mx-auto w-full px-xl py-xl pb-32">
+<!-- Bento Navigation Tabs -->
+<nav class="flex space-x-base bg-surface-container-high p-1 rounded-xl mb-xl max-w-fit shadow-inner">
+<button class="px-lg py-sm rounded-lg font-button-text transition-all bg-white text-primary shadow-sm">Profile</button>
+<button class="px-lg py-sm rounded-lg font-button-text transition-all text-secondary hover:text-primary">Account</button>
+<button class="px-lg py-sm rounded-lg font-button-text transition-all text-secondary hover:text-primary">Notifications</button>
+<button class="px-lg py-sm rounded-lg font-button-text transition-all text-secondary hover:text-primary">Billing</button>
+<button class="px-lg py-sm rounded-lg font-button-text transition-all text-secondary hover:text-primary">Security</button>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Left Column: Profile & Account -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Profile Section Card -->
+<section class="glass-card rounded-2xl p-xl shadow-sm border border-outline-variant">
+<div class="flex items-center space-x-md mb-xl">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Profile Information</h3>
+</div>
+<div class="flex flex-col md:flex-row gap-xl">
+<!-- Avatar Upload -->
+<div class="flex flex-col items-center space-y-md">
+<div class="relative group">
+<div class="w-32 h-32 rounded-2xl border-4 border-white shadow-lg overflow-hidden transition-transform group-hover:scale-105">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist profile photo of a modern tech professional with a warm smile, set against a blurred high-tech office background with subtle blue and orange light leaks. The aesthetic is clean and corporate yet approachable, matching a premium cloud certification platform's visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLNFYp9TeqXZO0K9lD5mLfERThb6G-nsqAHiUC7bs9EkrGcmWqa02Fn5kHh-qLOyy27fmRHJkbvFdWio3LaA8PhwLjje2Fsy3vZyVud5_ULKkdgVwIxgd4AdMVk1bqMZknmDtBkn6h3WbnrXDPVcslWwnDoSXilFUWb-9E4aK7dEQr-inIzEaWKx-0WIIgRsY34D5GugsfegZoYDb3-FErhxDsWhgdW7AlJXs8Jll0Kjry6ugWCnnDjr7pqq5pKM30hPWOC-QSy-s">
+</div>
+<button class="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-lg shadow-lg hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</button>
+</div>
+<p class="text-[12px] font-label-md text-secondary uppercase">JPG, PNG (Max 5MB)</p>
+</div>
+<!-- Profile Form -->
+<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider ml-1">Full Name</label>
+<input class="bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 rounded-t-lg px-md py-sm font-body-md transition-all outline-none" type="text" value="Shreyas">
+</div>
+<div class="flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider ml-1">Email Address</label>
+<input class="bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 rounded-t-lg px-md py-sm font-body-md transition-all outline-none" type="email" value="shreyas.cloud@quizee.com">
+</div>
+<div class="md:col-span-2 flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider ml-1">Job Title</label>
+<input class="bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 rounded-t-lg px-md py-sm font-body-md transition-all outline-none" type="text" value="Cloud Solutions Architect">
+</div>
+<div class="flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider ml-1">LinkedIn Profile</label>
+<div class="flex items-center bg-surface-container-low border-b-2 border-outline-variant rounded-t-lg">
+<span class="px-md text-secondary font-label-md border-r border-outline-variant/30">linkedin.com/in/</span>
+<input class="bg-transparent border-none focus:ring-0 w-full px-md py-sm font-body-md" type="text" value="shreyas-cloud">
+</div>
+</div>
+<div class="flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider ml-1">GitHub Username</label>
+<div class="flex items-center bg-surface-container-low border-b-2 border-outline-variant rounded-t-lg">
+<span class="px-md text-secondary font-label-md border-r border-outline-variant/30">github.com/</span>
+<input class="bg-transparent border-none focus:ring-0 w-full px-md py-sm font-body-md" type="text" value="shreyas_dev">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Account Preferences -->
+<section class="glass-card rounded-2xl p-xl shadow-sm border border-outline-variant">
+<div class="flex items-center space-x-md mb-xl">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">tune</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Account Preferences</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<div class="flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider">Language</label>
+<select class="bg-surface-container-low border border-outline-variant rounded-xl px-md py-sm font-body-md focus:border-primary focus:ring-primary/20 appearance-none transition-all">
+<option>English (US)</option>
+<option>Japanese</option>
+<option>German</option>
+</select>
+</div>
+<div class="flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider">Interface Theme</label>
+<div class="flex p-1 bg-surface-container-high rounded-xl">
+<button class="flex-1 py-2 text-xs font-bold uppercase rounded-lg bg-white text-primary shadow-sm flex items-center justify-center space-x-1">
+<span class="material-symbols-outlined text-sm">light_mode</span>
+<span>Light</span>
+</button>
+<button class="flex-1 py-2 text-xs font-bold uppercase rounded-lg text-secondary flex items-center justify-center space-x-1 hover:bg-white/50">
+<span class="material-symbols-outlined text-sm">dark_mode</span>
+<span>Dark</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col space-y-xs">
+<label class="text-[12px] font-label-md text-secondary uppercase tracking-wider">Current AWS Goal</label>
+<div class="bg-primary/5 border border-primary/20 rounded-xl px-md py-sm flex items-center justify-between">
+<span class="text-sm font-bold text-primary">SAA-C03</span>
+<span class="material-symbols-outlined text-primary text-sm">edit</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Billing & Security -->
+<div class="lg:col-span-4 space-y-lg">
+<!-- Billing Card -->
+<section class="bg-inverse-surface text-inverse-on-surface rounded-2xl p-xl shadow-xl border border-white/10 relative overflow-hidden group">
+<!-- Background Accent -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all"></div>
+<div class="flex items-center space-x-md mb-lg relative z-10">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">payments</span>
+<h3 class="font-headline-md text-headline-md">Billing &amp; Plan</h3>
+</div>
+<div class="space-y-lg relative z-10">
+<div class="p-md bg-white/5 rounded-xl border border-white/10">
+<p class="text-[10px] font-label-md text-primary-fixed-dim uppercase tracking-widest mb-1">Current Plan</p>
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-headline-md text-white">Quizee Pro</h4>
+<p class="text-sm text-surface-container-highest/60">$29.00 / 3 months</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed-dim animate-pulse">verified</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<p class="text-[10px] font-label-md text-surface-container-highest/40 uppercase tracking-wider">Next Renewal</p>
+<p class="font-medium">Oct 24, 2024</p>
+</div>
+<div>
+<p class="text-[10px] font-label-md text-surface-container-highest/40 uppercase tracking-wider">Payment Method</p>
+<div class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-xs">credit_card</span>
+<p class="font-medium">Visa •••• 4242</p>
+</div>
+</div>
+</div>
+<button class="w-full py-md bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-button-text transition-all text-white">
+                                    Manage Subscription
+                                </button>
+</div>
+</section>
+<!-- Security Card -->
+<section class="glass-card rounded-2xl p-xl shadow-sm border border-outline-variant">
+<div class="flex items-center space-x-md mb-xl">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Security</h3>
+</div>
+<div class="space-y-lg">
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-xl border border-outline-variant/30 group hover:border-primary transition-all cursor-pointer">
+<div class="flex items-center space-x-md">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">key</span>
+<div>
+<p class="font-bold text-sm">Change Password</p>
+<p class="text-xs text-secondary">Update your access key</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-xl border border-outline-variant/30">
+<div class="flex items-center space-x-md">
+<span class="material-symbols-outlined text-secondary">vibration</span>
+<div>
+<p class="font-bold text-sm">2FA Security</p>
+<p class="text-xs text-secondary">Phone verification active</p>
+</div>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<!-- Floating Action Bar -->
+<div class="fixed bottom-0 md:left-64 right-0 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 p-lg px-xl flex justify-end items-center space-x-md z-50 shadow-[0_-8px_24px_rgba(35,47,62,0.08)]">
+<button class="px-xl py-md font-button-text text-secondary hover:bg-surface-container-high rounded-xl transition-all border border-transparent">
+                    Discard Changes
+                </button>
+<button class="px-xl py-md bg-primary text-white font-button-text rounded-xl shadow-lg hover:shadow-primary/30 transition-all hover:scale-[1.02] active:scale-95 flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm">save</span>
+<span>Save Changes</span>
+</button>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Simulated Context) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant/30 px-lg py-sm flex justify-between items-center z-[60] shadow-2xl">
+<div class="flex flex-col items-center text-secondary opacity-50">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center text-secondary opacity-50">
+<span class="material-symbols-outlined">quiz</span>
+<span class="text-[10px] font-label-md">Exams</span>
+</div>
+<div class="flex flex-col items-center text-primary bg-primary/10 p-2 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-[10px] font-label-md">Account</span>
+</div>
+</nav>
+<script src="profile.js"></script>
+</body></html>

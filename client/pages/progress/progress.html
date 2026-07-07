@@ -1,0 +1,356 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Exam Results | Quizee Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed-dim": "#bbc7db",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#576474",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-bright": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#30c88f",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container": "#eceef0",
+                        "primary-fixed": "#ffdcbd",
+                        "surface": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ffb86f",
+                        "surface-tint": "#8a5100",
+                        "primary-container": "#ff9900",
+                        "on-primary-container": "#653a00",
+                        "outline": "#887361",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "secondary-fixed": "#d7e3f7",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-surface": "#191c1e",
+                        "secondary-container": "#d4e1f5",
+                        "on-secondary-fixed": "#101c2b",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#693c00",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#535f70",
+                        "on-primary-fixed": "#2c1600",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#3c4858",
+                        "outline-variant": "#dbc2ad",
+                        "on-tertiary-fixed": "#002113",
+                        "background": "#f7f9fb",
+                        "tertiary": "#006c49",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#8a5100",
+                        "on-tertiary-container": "#004e34",
+                        "on-surface-variant": "#554434",
+                        "inverse-primary": "#ffb86f",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "button-text": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "button-text": ["15px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="progress.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center w-full px-lg max-w-container-max mx-auto h-16 sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<a class="font-headline-md text-headline-md font-extrabold text-primary-container" href="../../index.html">Quizee</a>
+<div class="hidden md:flex gap-md ml-xl">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="../quiz/quize.html">Practice</a>
+<a class="text-primary font-bold border-b-2 border-primary font-label-md text-label-md" href="progress.html">Analytics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="../leaderboard/leaderboard.html">Leaderboard</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-xs">
+<img class="w-full h-full object-cover" data-alt="A professional user avatar for a software engineer, looking modern and tech-savvy. The lighting is bright and clean with a soft blue and orange studio glow. The style is professional portraiture with a minimalist grey background, reflecting a high-end SaaS user profile aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR4TE4QZcktVrNMyk7RgMAeeHkV3KFr4oWUJ0iYVkgqKKgv2x7u4IGJzr3uRF_6fVtXTpEMmyEMfoTAXnElYKFdJNaQAt9SI6KLHHa1fvAWRdMyHAZUdgFQRm1L7Kv4RBw3D-GNyVjAy2YOOnwqUAslHmvBQCoMJN2PrQbefJs39UWzlvE26K40C3Y6Kjqrggz5YwrfPf7jqgesrqriVtxgJZvLoV2lHndeq6HvsceYsBEOmKwCYlyYhdA-czk2Sslix5ZuV6F49o">
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto p-md md:p-xl flex flex-col gap-xl">
+<!-- Hero Result Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-stretch">
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm flex flex-col md:flex-row items-center gap-xl relative overflow-hidden">
+<!-- Background Accent -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-tertiary/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+<div class="relative z-10 flex flex-col items-center md:items-start text-center md:text-left gap-xs">
+<span class="font-label-md text-label-md text-tertiary bg-tertiary-container/10 px-md py-xs rounded-full inline-block">AWS Solutions Architect - Associate</span>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mt-base">Exam Complete</h1>
+<p class="text-on-surface-variant max-w-md">Your performance has been evaluated against the official AWS certification domains. Review your metrics below.</p>
+<div class="mt-lg flex flex-wrap gap-md justify-center md:justify-start">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-md text-label-md">Passing Score</span>
+<span class="text-on-surface font-bold font-headline-md">720</span>
+</div>
+<div class="w-px h-10 bg-outline-variant hidden md:block"></div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-md text-label-md">Time Taken</span>
+<span class="text-on-surface font-bold font-headline-md">1h 42m</span>
+</div>
+</div>
+</div>
+<div class="flex-1 flex justify-center items-center relative z-10 w-full md:w-auto">
+<div class="bg-surface-container-lowest border-4 border-tertiary-container p-xl rounded-full w-48 h-48 flex flex-col items-center justify-center shadow-xl">
+<span class="text-tertiary font-black font-display-lg">PASS</span>
+<div class="flex items-baseline gap-base">
+<span class="font-headline-md text-on-surface">820</span>
+<span class="text-on-surface-variant font-label-md">/ 1000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Action Card -->
+<div class="lg:col-span-4 bg-inverse-surface text-inverse-on-surface rounded-xl p-lg shadow-md flex flex-col justify-between border border-transparent">
+<div>
+<h3 class="font-headline-md text-headline-md mb-sm">Ready to Certify?</h3>
+<p class="text-surface-variant font-body-md">Your score is 14% above the average pass rate. We recommend scheduling your actual exam within the next 7 days while retention is high.</p>
+</div>
+<div class="flex flex-col gap-sm mt-xl">
+<button class="bg-primary-container text-on-primary-fixed font-button-text text-button-text py-md rounded-lg flex items-center justify-center gap-sm active:scale-95 transition-transform">
+                        Schedule Official Exam
+                        <span class="material-symbols-outlined">open_in_new</span>
+</button>
+<button class="border border-surface-variant text-inverse-on-surface font-button-text text-button-text py-md rounded-lg hover:bg-surface-variant/10 active:scale-95 transition-transform">
+                        Share Achievement
+                    </button>
+</div>
+</div>
+</div>
+<!-- Analytics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Radar Chart: Topic Performance -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Topic Radar</h3>
+<span class="material-symbols-outlined text-on-surface-variant">insights</span>
+</div>
+<div class="aspect-square w-full flex items-center justify-center">
+<!-- SVG Radar Chart Simulation -->
+<svg class="w-full h-full" viewBox="0 0 200 200">
+<!-- Grids -->
+<circle class="radar-grid" cx="100" cy="100" r="80"></circle>
+<circle class="radar-grid" cx="100" cy="100" r="60"></circle>
+<circle class="radar-grid" cx="100" cy="100" r="40"></circle>
+<circle class="radar-grid" cx="100" cy="100" r="20"></circle>
+<!-- Axes -->
+<line class="radar-axis" x1="100" x2="100" y1="20" y2="180"></line>
+<line class="radar-axis" x1="20" x2="180" y1="100" y2="100"></line>
+<line class="radar-axis" x1="43" x2="157" y1="43" y2="157"></line>
+<line class="radar-axis" x1="43" x2="157" y1="157" y2="43"></line>
+<!-- Radar Area (Compute, Storage, Networking, Security, Management) -->
+<polygon class="radar-area" points="100,30 160,80 140,150 60,150 40,80"></polygon>
+<!-- Labels -->
+<text class="fill-on-surface-variant text-[8px] font-label-md" text-anchor="middle" x="100" y="15">COMPUTE</text>
+<text class="fill-on-surface-variant text-[8px] font-label-md" text-anchor="start" x="185" y="100">STORAGE</text>
+<text class="fill-on-surface-variant text-[8px] font-label-md" text-anchor="middle" x="145" y="175">NETWORKING</text>
+<text class="fill-on-surface-variant text-[8px] font-label-md" text-anchor="middle" x="55" y="175">SECURITY</text>
+<text class="fill-on-surface-variant text-[8px] font-label-md" text-anchor="end" x="15" y="100">MANAGEMENT</text>
+</svg>
+</div>
+</div>
+<!-- Strength vs Weakness -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm flex flex-col gap-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Proficiency Breakdown</h3>
+<div class="flex flex-col gap-md">
+<div class="p-md rounded-lg bg-tertiary-container/10 border-l-4 border-tertiary">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+<span class="font-bold text-on-surface font-label-md text-label-md">STRENGTHS</span>
+</div>
+<ul class="text-sm text-on-surface-variant flex flex-col gap-1 list-disc list-inside">
+<li>EC2 Instance Selection &amp; Scaling</li>
+<li>IAM Role Policies &amp; MFA</li>
+<li>S3 Lifecycle Configurations</li>
+</ul>
+</div>
+<div class="p-md rounded-lg bg-error-container/20 border-l-4 border-error">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-error text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-bold text-on-surface font-label-md text-label-md text-error">WEAKNESSES</span>
+</div>
+<ul class="text-sm text-on-surface-variant flex flex-col gap-1 list-disc list-inside">
+<li>VPC Peering &amp; Transit Gateways</li>
+<li>Kinesis Data Streams vs Firehose</li>
+<li>Route 53 Routing Policies</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- AI Insights & Trends -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm flex flex-col">
+<div class="flex items-center gap-sm mb-md">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-md">auto_awesome</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">AI Coach Summary</h3>
+</div>
+<div class="flex-1 flex flex-col gap-md">
+<p class="text-on-surface-variant italic font-body-md border-b border-outline-variant pb-md">
+                        "You demonstrate strong mastery of serverless architecture but struggled with complex networking scenarios. Focus your next 3 sessions on VPC subnets and routing tables."
+                    </p>
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Retention Score</span>
+<span class="text-on-surface font-bold">92%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[92%]"></div>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Accuracy Trend</span>
+<span class="text-tertiary font-bold">+12.4%</span>
+</div>
+</div>
+<div class="mt-auto pt-md">
+<button class="w-full flex items-center justify-between text-primary font-bold font-button-text text-button-text hover:bg-primary/5 p-sm rounded-lg transition-colors">
+                            View Detailed Answer Key
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Learning Path Section -->
+<div class="bg-surface-container-low rounded-2xl p-lg md:p-xl border border-outline-variant relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+
+</div>
+<div class="relative z-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div class="flex flex-col gap-xs">
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Bridge Your Gaps</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Personalized Learning Path</h2>
+</div>
+<div class="flex gap-sm">
+<span class="flex items-center gap-xs bg-surface-container-lowest px-md py-xs rounded-full border border-outline-variant text-xs font-label-md">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span> 3 Modules Recommended
+                        </span>
+<span class="flex items-center gap-xs bg-surface-container-lowest px-md py-xs rounded-full border border-outline-variant text-xs font-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Est. 4h Completion
+                        </span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Module 1 -->
+<div class="glass-effect p-md rounded-xl border border-outline-variant hover:border-primary transition-all group cursor-pointer shadow-sm">
+<div class="aspect-video rounded-lg mb-md overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, high-tech isometric 3D illustration of a Virtual Private Cloud (VPC) infrastructure on AWS. The design features glowing blue and orange data lines connecting stylized server racks and routers. The lighting is sophisticated, using a dark background with vibrant tech accents, matching the professional cloud engineering aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmR9jC50VP1OP3OwynoNsi4LG8Wd0eMWXDWpoGlPmCkpnGut9lROCJ8gLo7LLtSCVK3YOUgGQBVnzdc-F5C6Je2l1jSl63xIQzBsBBePMLfw-yEYra4czLTK3j680vQCEJgvScOvt-kzN40QvDrPi0kyckLHwvwT6h-oT29aPO6INXhB31yhjAoZT9ekGTeuNY7-Lss53BT73MspfWZttNduQDHpmC8R0PTq4pM7WJwJ9n5XAtLERQ1NU8lUkHZmc5VNgfS5KSCow">
+<div class="absolute top-sm left-sm bg-inverse-surface/80 text-inverse-on-surface text-[10px] px-xs py-base rounded font-label-md">NETWORKING</div>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-xs group-hover:text-primary transition-colors">Advanced VPC Mastery</h4>
+<p class="text-sm text-on-surface-variant mb-md">Deep dive into Peering, Transit Gateways, and Hybrid Connectivity.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-on-surface-variant font-label-md">80 mins • Intermediate</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">play_circle</span>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="glass-effect p-md rounded-xl border border-outline-variant hover:border-primary transition-all group cursor-pointer shadow-sm">
+<div class="aspect-video rounded-lg mb-md overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist digital artwork representing real-time data streaming and analytics. Flowing orange particles move like a river through abstract digital filters. The visual style is modern SaaS with a glassmorphic feel, clean lines, and a high-contrast white and orange color scheme, reflecting AWS Kinesis and data processing concepts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf-VpXspihFUtvejQMhw4ZF74Iuz9lNF1iMQmV43_U5U8jRwKlvvdoBaGC1h9bfDxFSSllt3ONOECT0OzVHjZvHwyYpACaybr-CCclUZ_obbBwXi-B31fT583sm8jM3ePl8-kfjpbd0ZK-i8aIg1HPippZjOlGgXNAP4_BzWEJRVXTWmI9AuB31pyhxEXuLjtbN3UHTxMuxuR_vMQbcIh3SoDUSAm6KAnijiiNVEXeRHqtiYJhQekEAyIilb1_r6kT1tT4mSz4LA8">
+<div class="absolute top-sm left-sm bg-inverse-surface/80 text-inverse-on-surface text-[10px] px-xs py-base rounded font-label-md">DATA ANALYTICS</div>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-xs group-hover:text-primary transition-colors">Kinesis Deep Dive</h4>
+<p class="text-sm text-on-surface-variant mb-md">Architecting real-time streaming solutions and data firehose integration.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-on-surface-variant font-label-md">45 mins • Advanced</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">play_circle</span>
+</div>
+</div>
+<!-- Module 3 -->
+<div class="glass-effect p-md rounded-xl border border-outline-variant hover:border-primary transition-all group cursor-pointer shadow-sm">
+<div class="aspect-video rounded-lg mb-md overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional visualization of global DNS routing and server distribution. The image shows a world map with glowing points of presence and curved connection paths. Styled with high-end tech aesthetics, using soft shadows and a pristine light mode palette with AWS-inspired orange highlights for professional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaNRzyPVJWyyY9ePfnKX-m03h5B8qwSyLYnil1RwCcgusM29nhuPVHSd2KZHnZa1wt22bpkbyZa3Oe0z-snEcf2K1BuvakHpZEyMYK_35AxtOvtiRWDRSDa4SXcaDjS4v6gJ7bGzniOLlbsZ_xuzJC3W7gZLhiQZilVCT6xhyx41EgE-fAwW33-kfI2ff_oI46z6iSFujkMjkY7FllZkVDsj2kfYJKnpgIYqL5qtnPmGqayRXXn8IIZPkbEfDY0XzNeM_7-BJ0ON0">
+<div class="absolute top-sm left-sm bg-inverse-surface/80 text-inverse-on-surface text-[10px] px-xs py-base rounded font-label-md">STORAGE &amp; CONTENT</div>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-xs group-hover:text-primary transition-colors">Route 53 Strategies</h4>
+<p class="text-sm text-on-surface-variant mb-md">Failover, Geolocation, and Latency-based routing policy architectures.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-on-surface-variant font-label-md">65 mins • Intermediate</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">play_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-xs md:hidden bg-surface/80 backdrop-blur-md border-t border-outline-variant shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="../dashboard/dashboard.html">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="../quiz/quize.html">
+<span class="material-symbols-outlined">timer</span>
+<span class="font-label-md text-[10px]">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold" href="progress.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="font-label-md text-[10px]">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="../leaderboard/leaderboard.html">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-md text-[10px]">Rank</span>
+</a>
+</nav>
+<script src="progress.js"></script>
+</body></html>
