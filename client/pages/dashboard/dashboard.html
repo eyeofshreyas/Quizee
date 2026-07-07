@@ -104,24 +104,7 @@
             },
         }
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .technical-border {
-            border-left: 4px solid #ff9900;
-        }
-        .progress-ring {
-            transition: stroke-dashoffset 0.35s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
-    </style>
+<link href="dashboard.css" rel="stylesheet">
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
 <!-- Sidebar Navigation -->
@@ -453,21 +436,5 @@
 </a>
 </nav>
 <!-- Simple Hover Micro-interaction -->
-<script>
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                // Subtle reactive behavior logic could go here
-            });
-        });
-        
-        // Dynamic date in dashboard header
-        const now = new Date();
-        const hour = now.getHours();
-        const headerText = document.querySelector('h1.text-headline-lg');
-        if(hour < 12) headerText.innerText = "Good morning, Shreyas";
-        else if(hour < 18) headerText.innerText = "Good afternoon, Shreyas";
-        else headerText.innerText = "Good evening, Shreyas";
-    </script>
-
-
+<script src="dashboard.js"></script>
 </body></html>

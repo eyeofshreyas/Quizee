@@ -1,0 +1,414 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Leaderboard | Quizee</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container-lowest": "#ffffff",
+                "surface-dim": "#d8dadc",
+                "surface-container-low": "#f2f4f6",
+                "secondary-fixed-dim": "#bbc7db",
+                "on-background": "#191c1e",
+                "on-secondary-container": "#576474",
+                "tertiary-fixed": "#6ffbbe",
+                "surface-bright": "#f7f9fb",
+                "on-error": "#ffffff",
+                "tertiary-container": "#30c88f",
+                "inverse-surface": "#2d3133",
+                "inverse-on-surface": "#eff1f3",
+                "surface-container": "#eceef0",
+                "primary-fixed": "#ffdcbd",
+                "surface": "#f7f9fb",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#ffb86f",
+                "surface-tint": "#8a5100",
+                "primary-container": "#ff9900",
+                "on-primary-fixed-variant": "#693c00",
+                "outline": "#887361",
+                "on-tertiary-fixed-variant": "#005236",
+                "secondary-fixed": "#d7e3f7",
+                "tertiary-fixed-dim": "#4edea3",
+                "on-surface": "#191c1e",
+                "secondary": "#535f70",
+                "on-primary-fixed": "#2c1600",
+                "error": "#ba1a1a",
+                "on-secondary-fixed-variant": "#3c4858",
+                "outline-variant": "#dbc2ad",
+                "on-tertiary-fixed": "#002113",
+                "background": "#f7f9fb",
+                "tertiary": "#006c49",
+                "on-secondary": "#ffffff",
+                "surface-container-high": "#e6e8ea",
+                "surface-container-highest": "#e0e3e5",
+                "primary": "#8a5100",
+                "on-tertiary-container": "#004e34",
+                "on-surface-variant": "#554434",
+                "inverse-primary": "#ffb86f",
+                "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "base": "4px",
+                "lg": "24px",
+                "md": "16px",
+                "xl": "32px",
+                "sm": "12px",
+                "xs": "8px"
+            },
+            "fontFamily": {
+                "button-text": ["Manrope"],
+                "body-lg": ["Inter"],
+                "display-lg": ["Manrope"],
+                "headline-lg": ["Manrope"],
+                "body-md": ["Inter"],
+                "label-md": ["JetBrains Mono"],
+                "headline-md": ["Manrope"],
+                "headline-lg-mobile": ["Manrope"]
+            },
+            "fontSize": {
+                "button-text": ["15px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<link href="leaderboard.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex bg-surface border-b border-outline-variant shadow-sm z-50 sticky top-0">
+<div class="flex justify-between items-center w-full px-lg max-w-container-max mx-auto h-16">
+<div class="font-headline-md text-headline-md font-extrabold text-primary-container">Quizee</div>
+<div class="flex gap-xl">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-button-text" href="#">Practice</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-button-text" href="#">Analytics</a>
+<a class="text-primary font-bold border-b-2 border-primary font-button-text" href="#">Leaderboard</a>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer p-xs transition-colors">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer p-xs transition-colors">help</span>
+<img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="Professional user avatar for an AWS Cloud Architect, close-up shot with soft studio lighting, modern tech office background, high resolution, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq60KPbhNndKxgZ-aVsMObMM_2v59WBVAP7WqY72vmFWnemDPiBIgbNj0LX7D1--tVu_a6VAq_-U9ukFyRKRhjuk1kXfdyY6OUfOfOtGPSL3rnupv1F78h72ziWcX2xThrM1oTgujA00dnTCle9Qq4KIH1Rs7V3nPHy2owN0zaZL_tzSyrsOKIJMDNPs4iuyYnbbKPLka3TU3yBOgKRTbl33-cFPFklRvLRr2FMpFSRwueOd4t5svb25NExF-Oe_BVXzGNx6jaydU">
+</div>
+</div>
+</nav>
+<!-- Sidebar (Desktop) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-16 p-md gap-sm bg-surface-container-low border-r border-outline-variant">
+<div class="flex flex-col gap-xs mb-lg">
+<div class="flex items-center gap-sm p-sm">
+<img class="w-12 h-12 rounded-lg object-cover" data-alt="High-quality profile picture of a young professional smiling, tech-oriented style, neutral studio lighting, soft color palette, professional headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPU_hv5LbdLvDqcvOlEmFO0OmTny06C-EIaOZxk4SzI4UrjeltxwACN7-WXYuBsnr3TzOmaRku_vvwJ7R8VzL9DzbQJZwb2eLZFOMd11S183aEpHy9iLhp1bPR0R32XcVBmUdvmH8OFHBFSmujG5ga9SFVJIQOuLCEOW8pfeYK9hAOoZXKt01jXG-Vd1yQOaQGeXWLouovPvmFenQKZMWVhQkfIggNVvasvy1vfnUptyktqUoYkhYC7l5mlg2j8DawKf66bIS9-dU">
+<div>
+<h3 class="font-headline-md text-[16px] leading-tight text-on-surface">Alex Chen</h3>
+<p class="font-label-md text-secondary">AWS Solutions Arch.</p>
+</div>
+</div>
+<div class="p-md bg-primary-container/10 rounded-xl border border-primary-container/20">
+<p class="font-label-md text-primary mb-1">YOUR RANK</p>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-lg text-primary">#42</span>
+<span class="text-secondary font-label-md">Top 5%</span>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-xs">
+<div class="text-secondary font-label-md px-sm py-xs uppercase tracking-wider">Navigation</div>
+<a class="flex items-center gap-md p-sm text-secondary hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-sm text-secondary hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-md">Mock Exams</span>
+</a>
+<a class="flex items-center gap-md p-sm bg-primary-container text-on-primary-container rounded-lg font-bold shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="font-label-md">Leaderboard</span>
+</a>
+<a class="flex items-center gap-md p-sm text-secondary hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg">
+<div class="text-secondary font-label-md px-sm py-xs uppercase tracking-wider mb-sm">Recent Achievements</div>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm p-sm glass-card rounded-xl">
+<div class="w-10 h-10 bg-tertiary-container rounded-full flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cloud</span>
+</div>
+<div>
+<p class="font-label-md font-bold text-on-surface">S3 Master</p>
+<p class="text-[11px] text-secondary">Earned 2h ago</p>
+</div>
+</div>
+<div class="flex items-center gap-sm p-sm glass-card rounded-xl opacity-75">
+<div class="w-10 h-10 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lan</span>
+</div>
+<div>
+<p class="font-label-md font-bold text-on-surface">Networking Guru</p>
+<p class="text-[11px] text-secondary">Earned 1d ago</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-lg py-sm px-md bg-inverse-surface text-surface rounded-lg font-button-text text-button-text active:scale-95 transition-transform">
+                Upgrade to Pro
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 p-margin-mobile md:p-xl mb-24 md:mb-0">
+<div class="max-w-container-max mx-auto">
+<!-- Podium Header -->
+<header class="mb-xl text-center md:text-left">
+<h1 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-surface mb-xs">Community Leaderboard</h1>
+<p class="text-secondary font-body-md">Celebrating the top AWS experts this month.</p>
+</header>
+<!-- Top 3 Podium -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl items-end">
+<!-- 2nd Place -->
+<div class="order-2 md:order-1 h-full flex flex-col justify-end">
+<div class="glass-card p-lg rounded-xl text-center relative group transition-all hover:translate-y-[-4px] hover:shadow-md border-t-4 border-slate-300">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2">
+<div class="relative">
+<img class="w-20 h-20 rounded-full border-4 border-surface-container object-cover" data-alt="Close up portrait of a middle-eastern woman tech professional, vibrant lighting, soft focus background, professional attire, high quality cinematic render." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzTuilhXnPGcNny0YjVs3w4BGMjGUCTfL_ljn5kaeHJUM4drKTRzJMaNaXJAMT9Z7O8LUFZMxePYqEn4hJfaJRkH1RIxU22sTZISt8skPhuhLJTqWsVnSLNwgClXdiCMuhq45yshvRgikK44hP_oADmXUWf9tiIKQMC508c0IkuYQ8wUGruAW9gDb4QNW9kdcjhsDsazKXYUDzdysh3g1pJOmjj4q_5I0Pp7FCKABfzLp4KbbeZzi0nPvlboYEQD6g-SdnadOpsCc">
+<div class="absolute -bottom-2 -right-2 w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center text-slate-700 font-bold border-2 border-surface">2</div>
+</div>
+</div>
+<div class="mt-12">
+<h3 class="font-headline-md text-on-surface">Sarah K.</h3>
+<p class="font-label-md text-primary-container font-bold">12,450 XP</p>
+<div class="mt-sm flex justify-center gap-xs">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded-full font-label-md">SAA-C03</span>
+<span class="px-2 py-0.5 bg-tertiary-container/20 text-tertiary text-[10px] rounded-full font-label-md">12 Streak</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 1st Place -->
+<div class="order-1 md:order-2 h-full">
+<div class="glass-card p-xl rounded-xl text-center relative group transition-all hover:translate-y-[-8px] hover:shadow-xl border-t-4 border-primary-container podium-gradient">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2">
+<div class="relative">
+<div class="absolute inset-0 bg-primary-container blur-lg opacity-40 rounded-full scale-110"></div>
+<img class="w-28 h-28 rounded-full border-4 border-primary-container object-cover relative" data-alt="Portrait of a young male software developer with glasses, professional aesthetic, golden hour lighting, blurred server room background, hyper-realistic photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACTO5aoocYWkIQLaYLZMwTsrdni3cih9ihP5mHc7eYfYuT07iItKGunHksPwZAniRvOstpeU2CdVxss-kYRaQujtCLSwMja-H3AwDJyjc5SpMAEtGbR-Cs-F3-pJUHzgFp_-5zp9SWqWJW-yvS3oFjJqdwzXNgfF8fySc2koWfDX2fH9kGiFY95RWxI7tn93Vdp9hCf_gYeeUTexwhmKHrDUku6roIObTOw8aHxNpqsMO6ySAWZUPAB3w8FOJ5mIBsgd0U4fdGdAc">
+<div class="absolute -bottom-2 -right-2 w-10 h-10 bg-primary-container rounded-full flex items-center justify-center text-white font-bold border-2 border-surface">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+</div>
+</div>
+<div class="mt-20">
+<div class="flex items-center justify-center gap-xs mb-1">
+<h2 class="font-headline-lg text-on-surface">Marco V.</h2>
+<span class="px-2 py-1 pro-badge-shimmer text-white text-[10px] rounded font-bold uppercase tracking-widest">PRO</span>
+</div>
+<p class="font-headline-md text-primary font-black">15,820 XP</p>
+<div class="mt-md flex justify-center gap-sm">
+<div class="flex flex-col items-center">
+<span class="text-secondary text-[11px] font-label-md uppercase">Certs</span>
+<span class="font-bold">04</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex flex-col items-center">
+<span class="text-secondary text-[11px] font-label-md uppercase">Streak</span>
+<span class="font-bold">48d</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3rd Place -->
+<div class="order-3 h-full flex flex-col justify-end">
+<div class="glass-card p-lg rounded-xl text-center relative group transition-all hover:translate-y-[-4px] hover:shadow-md border-t-4 border-orange-200">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2">
+<div class="relative">
+<img class="w-20 h-20 rounded-full border-4 border-surface-container object-cover" data-alt="Detailed portrait of a senior tech architect, warm inviting lighting, clean corporate background, high resolution digital photography, focused expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZsGajhHKw4w5Vodf5vylp3Hbuw4wmqm1pOqR1HkI9DjbwUSRWelqfeJrsksCOJ-d3tQ_ivDOccgv_PxYOslTBR6k9fwLzWmeENEs907kYBUEkuI4dBcia1bCgqcnG_4ROLMv2fDytuYHF6Qy8mEJXa1MjrAH1SdqYMyPDChuM_bYJSWHjDCLAMFxR9AapDJBN4EyMbGfqB25_ZjWcta2vRAhX5RrHEfTkpv_VCPcDgXVXZor0eRKJ1Nfl3rvMWPYTGy62lpoGYWA">
+<div class="absolute -bottom-2 -right-2 w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center text-orange-900 font-bold border-2 border-surface">3</div>
+</div>
+</div>
+<div class="mt-12">
+<h3 class="font-headline-md text-on-surface">David L.</h3>
+<p class="font-label-md text-primary-container font-bold">11,900 XP</p>
+<div class="mt-sm flex justify-center gap-xs">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded-full font-label-md">DVA-C02</span>
+<span class="px-2 py-0.5 bg-tertiary-container/20 text-tertiary text-[10px] rounded-full font-label-md">7 Streak</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard Table -->
+<div class="glass-card rounded-2xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-secondary uppercase tracking-wider">Rank</th>
+<th class="px-lg py-md font-label-md text-secondary uppercase tracking-wider">User</th>
+<th class="px-lg py-md font-label-md text-secondary uppercase tracking-wider">XP</th>
+<th class="px-lg py-md font-label-md text-secondary uppercase tracking-wider hidden md:table-cell">Certifications</th>
+<th class="px-lg py-md font-label-md text-secondary uppercase tracking-wider hidden sm:table-cell">Streak</th>
+<th class="px-lg py-md font-label-md text-secondary uppercase tracking-wider"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- User Row 4 -->
+<tr class="hover:bg-primary-container/5 transition-colors group cursor-pointer">
+<td class="px-lg py-md">
+<span class="font-label-md font-bold text-on-surface-variant">04</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Profile avatar of a young female tech enthusiast, modern digital art style, soft pastel color palette, clean and minimal design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4b2p0KW_FnZxNe-qI5OREw6vAN8-TReunZqtR_CAbo_1U1O1hn_TtjSSKUwSBFU_sx4iYTMeyKbGKQK2iXBCeJV6HGQy-wEyw2b0DtRbNaY_DJS49yCqlZVBLa2WLhQaiiTWPFlsLR7UtQhowKCNHyFwPFEvRlEY0O8pRIZiuKd5wNRvBSK6cL2q-zUnSFolJqzC0XPTZ78YRcD-MuoBK6lEIP2ny0Dc-o5dDkU9VT6ud4ZNT9jWV4hK1zfp7vpBZsonxnPd12mI">
+<div>
+<div class="flex items-center gap-xs">
+<span class="font-button-text text-on-surface">Elena S.</span>
+<span class="bg-primary-container text-on-primary-container text-[8px] px-1 rounded font-black">PRO</span>
+</div>
+<span class="text-[11px] text-secondary font-label-md">Associate Developer</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-label-md font-bold text-primary">10,210</span>
+</td>
+<td class="px-lg py-md hidden md:table-cell">
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-primary-container text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="material-symbols-outlined text-primary-container text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</td>
+<td class="px-lg py-md hidden sm:table-cell">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-error text-[16px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-on-surface">15 Days</span>
+</div>
+</td>
+<td class="px-lg py-md text-right">
+<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</td>
+</tr>
+<!-- Your Row Highlight -->
+<tr class="bg-primary-container/10 border-l-4 border-primary">
+<td class="px-lg py-md">
+<span class="font-label-md font-bold text-primary">42</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="High-quality profile picture of a young professional smiling, tech-oriented style, neutral studio lighting, soft color palette, professional headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZH7YXwfC2EScADgrhuIU-M-yZGpvxMPFe5Dkxl7CaMDGg64Z0RvnjqQdvW98-rUPR7Hj8bQVRiHAOu0eR0avk0lIHLozl4fSTehKwc_ZJCchoN8f3c9ZH3To4VXmH3Jgi_tQngpnb7y9QMU41RJAf7mF2HEqihVlv5m8vgl9DGQm2LL_bYpM7qgpdfmrh6rbnE6cdRt-9xyftAX0GiKpVeV07x7YNqzzxFpz0Zvd1hPhovuUjF_71EaCWOmMXjcqPnFwHmzHQJW8">
+<div>
+<div class="flex items-center gap-xs">
+<span class="font-button-text text-on-surface">Alex Chen</span>
+<span class="text-[8px] text-primary font-bold">(You)</span>
+</div>
+<span class="text-[11px] text-secondary font-label-md">Solutions Architect</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-label-md font-bold text-primary">4,280</span>
+</td>
+<td class="px-lg py-md hidden md:table-cell">
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-primary-container text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</td>
+<td class="px-lg py-md hidden sm:table-cell">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-error text-[16px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-on-surface">5 Days</span>
+</div>
+</td>
+<td class="px-lg py-md text-right">
+<span class="text-[10px] font-bold text-primary px-2 py-1 bg-white rounded-full shadow-sm">VIEW RANK</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-primary-container/5 transition-colors group cursor-pointer">
+<td class="px-lg py-md">
+<span class="font-label-md font-bold text-on-surface-variant">05</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Modern close up profile of a male tech professional with a clean shave, wearing casual smart attire, high-key studio lighting, vibrant professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi4b1Q74N5FORiM4KGJcbbw-Lrh9_KHZ4iHHSBn80jxB-rOQGLgfSPVzOVygCFNjTA4gySnKuHIPv02H0i_A118VZRYHIIIqjkaROiUVZLkEzdxw0ZfM0eBCfg_nDsGXP_6RIMg8WnxdtxkHZoXbMyyODwLuQh8qOq45wzx-ZK5xzI5BC1U8aZ3Trv_3VpSwWp-RnY4i_XW7R8L_ODQQo8Gd1K0RGEnrs2ynJ8I-CgQtCdjMSVrSPNnj2urKjXw6Kvf0uryaW82uc">
+<div>
+<div class="flex items-center gap-xs">
+<span class="font-button-text text-on-surface">Jordan T.</span>
+</div>
+<span class="text-[11px] text-secondary font-label-md">Cloud Ops Specialist</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-label-md font-bold text-primary">9,850</span>
+</td>
+<td class="px-lg py-md hidden md:table-cell">
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">verified</span>
+</div>
+</td>
+<td class="px-lg py-md hidden sm:table-cell">
+<div class="flex items-center gap-xs text-secondary/50">
+<span class="material-symbols-outlined text-[16px]">local_fire_department</span>
+<span class="font-label-md">0 Days</span>
+</div>
+</td>
+<td class="px-lg py-md text-right">
+<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md text-center bg-surface-container-low">
+<button class="text-primary font-button-text hover:underline transition-all">Load More Rankings</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-md border-t border-outline-variant flex justify-around items-center px-margin-mobile py-xs">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">timer</span>
+<span class="font-label-md text-[10px]">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-md text-[10px]">Rank</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px]">Profile</span>
+</a>
+</nav>
+<script src="leaderboard.js"></script>
+</body></html>
