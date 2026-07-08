@@ -18,6 +18,9 @@ const createQuiz = async ({ userId, certificationId, quizType, domainId, difficu
 
   result.quizSession.questions = ids.map(id => {
     const q = byId.get(id.toString());
+    if (!q) {
+      throw new ApiError(500, 'Question data inconsistent with session');
+    }
     return {
       _id: q._id,
       text: q.text,

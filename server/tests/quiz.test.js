@@ -56,6 +56,62 @@ async function testServiceCreateQuizReturnsFullQuestionContent() {
   console.log('quizService.createQuiz question-sanitization self-check passed');
 }
 
+async function testServiceCreateQuizPreservesQuestionOrder() {
+  // Regression guard: MongoDB's $in operator doesn't guarantee result order.
+  // The enrichment step uses a Map to restore the original aggregate-sampled order.
+  // If someone simplifies this back to found.map(...), result order gets scrambled.
+  const userId = '507f1f77bcf86cd799439040';
+  const certId = '507f1f77bcf86cd799439041';
+  const questionId1 = '507f1f77bcf86cd799439042';
+  const questionId2 = '507f1f77bcf86cd799439043';
+
+  const question1 = {
+    _id: questionId1,
+    text: 'First question',
+    options: ['A', 'B', 'C', 'D'],
+    correct_index: 0,
+    domain_id: 'domain1',
+    difficulty: 'Easy'
+  };
+
+  const question2 = {
+    _id: questionId2,
+    text: 'Second question',
+    options: ['W', 'X', 'Y', 'Z'],
+    correct_index: 1,
+    domain_id: 'domain2',
+    difficulty: 'Hard'
+  };
+
+  UserModel.findOneAndUpdate = async () => ({ _id: userId });
+  UserModel.findByIdAndUpdate = async () => ({ _id: userId });
+  CertificationModel.findById = async () => ({
+    _id: certId,
+    totalQuestions: 2,
+    durationMinutes: 60
+  });
+  // Engine samples in order: [q1, q2]
+  QuestionModel.aggregate = async () => [question1, question2];
+  // Service's find returns them reversed [q2, q1] to simulate $in reordering
+  QuestionModel.find = async () => [question2, question1];
+  QuizSessionModel.create = async (doc) => ({ _id: 'session3', createdAt: new Date(), ...doc });
+  subscriptionEngine.canStartQuiz = async () => ({ allowed: true });
+
+  const result = await quizService.createQuiz({
+    userId,
+    certificationId: certId,
+    quizType: 'practice'
+  });
+
+  assert.strictEqual(result.quizSession.questions.length, 2);
+  // Must preserve aggregate order [q1, q2], not Mongo's $in result order [q2, q1]
+  assert.strictEqual(result.quizSession.questions[0]._id, questionId1, 'first question must be in first position');
+  assert.strictEqual(result.quizSession.questions[0].text, 'First question');
+  assert.strictEqual(result.quizSession.questions[1]._id, questionId2, 'second question must be in second position');
+  assert.strictEqual(result.quizSession.questions[1].text, 'Second question');
+  console.log('quizService.createQuiz order-preservation self-check passed');
+}
+
 async function testEngineCreateQuizStaysIdOnly() {
   // Regression guard: server/logic/quizEngine/createQuiz.js's own return
   // value must stay ID-only. Direct composers of the logic layer
@@ -103,5 +159,6 @@ async function testEngineCreateQuizStaysIdOnly() {
 
 (async () => {
   await testServiceCreateQuizReturnsFullQuestionContent();
+  await testServiceCreateQuizPreservesQuestionOrder();
   await testEngineCreateQuizStaysIdOnly();
 })();
