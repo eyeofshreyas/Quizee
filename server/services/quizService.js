@@ -2,10 +2,32 @@ const quizEngine = require('../logic/quizEngine/createQuiz');
 const submitQuizEngine = require('../logic/quizEngine/submitQuiz');
 const timer = require('../logic/quizEngine/timer');
 const QuizSession = require('../models/QuizSession');
+const QuestionModel = require('../models/Question');
 const ApiError = require('../utils/ApiError');
 
+// HTTP-response shaping: the logic engine returns quizSession.questions as
+// ID-only (its real contract, relied on by verify.js and other direct
+// composers). The API response needs full sanitized question content, so
+// that enrichment happens here in the service layer, not in the engine.
 const createQuiz = async ({ userId, certificationId, quizType, domainId, difficulty }) => {
-  return quizEngine.createQuiz({ userId, certificationId, quizType, domainId, difficulty });
+  const result = await quizEngine.createQuiz({ userId, certificationId, quizType, domainId, difficulty });
+
+  const ids = result.quizSession.questions;
+  const found = await QuestionModel.find({ _id: { $in: ids } });
+  const byId = new Map(found.map(q => [q._id.toString(), q]));
+
+  result.quizSession.questions = ids.map(id => {
+    const q = byId.get(id.toString());
+    return {
+      _id: q._id,
+      text: q.text,
+      options: q.options,
+      domain_id: q.domain_id,
+      difficulty: q.difficulty
+    };
+  });
+
+  return result;
 };
 
 const submitQuiz = async ({ userId, sessionId, answers }) => {

@@ -97,13 +97,7 @@ class QuizEngine {
                 quizType,
                 status: 'ACTIVE',
                 startedTime: sessionDoc.createdAt,
-                questions: questions.map(q => ({
-                    _id: q._id,
-                    text: q.text,
-                    options: q.options,
-                    domain_id: q.domain_id,
-                    difficulty: q.difficulty
-                })),
+                questions: questions.map(q => q._id),
                 navigationStates,
                 answers: []
             };
