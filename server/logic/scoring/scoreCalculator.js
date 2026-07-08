@@ -39,7 +39,9 @@ class ScoreCalculator {
                 question_id: ans.question_id,
                 selected_option: ans.selected_option,
                 is_correct: isCorrect,
-                time_taken: ans.time_taken
+                time_taken: ans.time_taken,
+                correct_index: question.correct_index,
+                explanation: question.explanation
             });
         }
 
