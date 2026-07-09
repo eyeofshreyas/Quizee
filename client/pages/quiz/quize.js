@@ -158,10 +158,68 @@ if (typeof document !== 'undefined') {
             renderPalette();
         }
 
+        async function submitQuiz() {
+            const unanswered = state.questions.filter(q => !state.answers.has(q._id)).length;
+            if (unanswered > 0 && !confirm(`${unanswered} question(s) are unanswered. Submit anyway?`)) {
+                return;
+            }
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            trackTimeOnCurrentQuestion();
+
+            const answers = buildSubmitAnswers(state.questions, state.answers, state.timeSpent);
+
+            try {
+                const result = await apiRequest('/quiz/submit', {
+                    method: 'POST',
+                    body: { sessionId: state.sessionId, answers }
+                });
+                renderResults(result);
+            } catch (err) {
+                showError(err.message || 'Unable to submit this quiz.');
+            }
+        }
+
+        function renderResults(result) {
+            const { attempt } = result;
+            els.quizContent.classList.add('hidden');
+            els.resultsPanel.classList.remove('hidden');
+
+            els.resultScore.textContent = `${attempt.score} / ${attempt.total_questions}`;
+            els.resultAccuracy.textContent = attempt.total_questions > 0
+                ? `${((attempt.correct_answers / attempt.total_questions) * 100).toFixed(1)}%`
+                : '0%';
+            els.resultCorrect.textContent = String(attempt.correct_answers);
+            els.resultWrong.textContent = String(attempt.wrong_answers);
+            els.resultPassed.textContent = attempt.passed ? 'PASSED' : 'NOT PASSED';
+            els.resultPassed.classList.add(attempt.passed ? 'text-tertiary' : 'text-error');
+
+            const questionById = new Map(state.questions.map(q => [q._id, q]));
+            els.resultsBreakdown.innerHTML = attempt.results.map(r => {
+                const q = questionById.get(r.question_id);
+                const yourAnswer = r.selected_option === -1
+                    ? 'Skipped'
+                    : `${CHOICE_LETTERS[r.selected_option]}. ${q.options[r.selected_option]}`;
+                const correctAnswer = `${CHOICE_LETTERS[r.correct_index]}. ${q.options[r.correct_index]}`;
+                return `
+                    <div class="bg-white border rounded-xl p-lg ${r.is_correct ? 'border-tertiary' : 'border-error'}">
+                        <p class="font-headline-md text-on-surface mb-xs">${q.text}</p>
+                        <p class="text-sm mb-xs">Your answer: <span class="font-bold">${yourAnswer}</span></p>
+                        ${!r.is_correct ? `<p class="text-sm mb-xs">Correct answer: <span class="font-bold text-tertiary">${correctAnswer}</span></p>` : ''}
+                        ${r.explanation ? `<p class="text-sm text-on-surface-variant">${r.explanation}</p>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        els.submitBtn.addEventListener('click', submitQuiz);
+
         els.prevBtn.addEventListener('click', () => goToQuestion(Math.max(0, state.currentIndex - 1)));
         els.nextBtn.addEventListener('click', () => {
-            if (state.currentIndex === state.questions.length - 1) return; // Task 7 wires submit here
-            goToQuestion(state.currentIndex + 1);
+            if (state.currentIndex === state.questions.length - 1) {
+                submitQuiz();
+            } else {
+                goToQuestion(state.currentIndex + 1);
+            }
         });
         els.markReviewBtn.addEventListener('click', () => {
             const q = state.questions[state.currentIndex];
