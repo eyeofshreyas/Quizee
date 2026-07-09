@@ -166,7 +166,7 @@ if (typeof document !== 'undefined') {
                 els.timerDisplay.textContent = formatDuration(remaining);
                 if (remaining <= 0) {
                     clearInterval(state.timerInterval);
-                    submitQuiz();
+                    submitQuiz({ auto: true });
                 }
             }, 1000);
         }
@@ -180,9 +180,9 @@ if (typeof document !== 'undefined') {
             }, 1000);
         }
 
-        async function submitQuiz() {
+        async function submitQuiz(options = {}) {
             const unanswered = state.questions.filter(q => !state.answers.has(q._id)).length;
-            if (unanswered > 0 && !confirm(`${unanswered} question(s) are unanswered. Submit anyway?`)) {
+            if (!options.auto && unanswered > 0 && !confirm(`${unanswered} question(s) are unanswered. Submit anyway?`)) {
                 return;
             }
             if (state.timerInterval) clearInterval(state.timerInterval);
@@ -205,6 +205,10 @@ if (typeof document !== 'undefined') {
             const { attempt } = result;
             els.quizContent.classList.add('hidden');
             els.resultsPanel.classList.remove('hidden');
+            // ponytail: quiz is over; disable the submit button (that's what caused the confusing
+            // 400 error) and stop responding to palette clicks. Palette markup stays as-is otherwise.
+            els.submitBtn.disabled = true;
+            els.paletteGrid.style.pointerEvents = 'none';
 
             els.resultScore.textContent = `${attempt.score} / ${attempt.total_questions}`;
             els.resultAccuracy.textContent = attempt.total_questions > 0
