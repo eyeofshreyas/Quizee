@@ -158,6 +158,28 @@ if (typeof document !== 'undefined') {
             renderPalette();
         }
 
+        function startCountdown(remainingSeconds) {
+            let remaining = remainingSeconds;
+            els.timerDisplay.textContent = formatDuration(remaining);
+            state.timerInterval = setInterval(() => {
+                remaining -= 1;
+                els.timerDisplay.textContent = formatDuration(remaining);
+                if (remaining <= 0) {
+                    clearInterval(state.timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function startStopwatch() {
+            let elapsed = 0;
+            els.timerDisplay.textContent = formatDuration(elapsed);
+            state.timerInterval = setInterval(() => {
+                elapsed += 1;
+                els.timerDisplay.textContent = formatDuration(elapsed);
+            }, 1000);
+        }
+
         async function submitQuiz() {
             const unanswered = state.questions.filter(q => !state.answers.has(q._id)).length;
             if (unanswered > 0 && !confirm(`${unanswered} question(s) are unanswered. Submit anyway?`)) {
@@ -243,6 +265,12 @@ if (typeof document !== 'undefined') {
                 state.questions = created.quizSession.questions;
                 state.currentIndex = 0;
                 state.questionEnteredAt = Date.now();
+
+                if (quizType === 'mock') {
+                    startCountdown(created.quizSession.remainingTime);
+                } else {
+                    startStopwatch();
+                }
 
                 renderQuestion();
                 renderPalette();
