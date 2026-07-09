@@ -206,12 +206,13 @@ if (typeof module !== 'undefined' && require.main === module) {
     assert.strictEqual(computeQuestionState(0, 2, true, true), 'ANSWERED_AND_REVIEW');
     assert.strictEqual(computeQuestionState(0, 2, false, false), 'UNVISITED');
 
-    const qs = [{ _id: 'q1' }, { _id: 'q2' }];
-    const answers = new Map([['q1', 2]]);
+    const qs = [{ _id: 'q1' }, { _id: 'q2' }, { _id: 'q3' }];
+    const answers = new Map([['q1', 2], ['q3', 0]]);
     const timeSpent = new Map([['q1', 15]]);
     assert.deepStrictEqual(buildSubmitAnswers(qs, answers, timeSpent), [
         { question_id: 'q1', selected_option: 2, time_taken: 15 },
-        { question_id: 'q2', selected_option: -1, time_taken: 0 }
+        { question_id: 'q2', selected_option: -1, time_taken: 0 },
+        { question_id: 'q3', selected_option: 0, time_taken: 0 }
     ]);
 
     assert.strictEqual(formatDuration(3661), '01:01:01');
