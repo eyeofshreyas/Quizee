@@ -1,3 +1,6 @@
+requireAuth();
+wireLogout('logoutLink');
+
 document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => {
         // Subtle reactive behavior logic could go here

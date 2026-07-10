@@ -20,9 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('registerForm');
     const passwordError = document.getElementById('passwordError');
+    const registerError = document.getElementById('registerError');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            registerError.classList.add('hidden');
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             if (!passwordsMatch(password, confirmPassword)) {
@@ -30,8 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             passwordError.classList.add('hidden');
-            // ponytail: no backend wired up yet, client has no fetch layer anywhere else either
-            window.location.href = '../login/login.html';
+
+            try {
+                const { user, token } = await apiRequest('/auth/register', { method: 'POST', body: { username, email, password } });
+                saveSession(user, token);
+                window.location.href = '../dashboard/dashboard.html';
+            } catch (err) {
+                registerError.textContent = err.message;
+                registerError.classList.remove('hidden');
+            }
         });
     }
 

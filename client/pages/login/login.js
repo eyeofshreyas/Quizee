@@ -23,4 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
             illust.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)`;
         });
     }
+
+    const form = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        loginError.classList.add('hidden');
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const { user, token } = await apiRequest('/auth/login', { method: 'POST', body: { email, password } });
+            saveSession(user, token);
+            window.location.href = '../dashboard/dashboard.html';
+        } catch (err) {
+            loginError.textContent = err.message;
+            loginError.classList.remove('hidden');
+        }
+    });
 });

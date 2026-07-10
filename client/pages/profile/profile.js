@@ -1,3 +1,6 @@
+requireAuth();
+wireLogout('logoutLink');
+
 // Simple Micro-interactions
 document.querySelectorAll('input, select').forEach(input => {
     input.addEventListener('focus', () => {

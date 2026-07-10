@@ -30,6 +30,9 @@ function renderPaymentHistory(tbody, payments) {
 }
 
 if (typeof document !== 'undefined') {
+    requireAuth();
+    wireLogout('logoutLink');
+
     document.addEventListener('DOMContentLoaded', () => {
         renderPaymentHistory(document.getElementById('paymentHistoryBody'), PAYMENT_HISTORY);
 

@@ -1,3 +1,5 @@
+requireAuth();
+
 // Micro-interactions and data visualization animation
 document.addEventListener('DOMContentLoaded', () => {
     const radarArea = document.querySelector('.radar-area');

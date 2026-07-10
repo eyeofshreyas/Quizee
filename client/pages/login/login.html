@@ -195,7 +195,7 @@
 </div>
 </div>
 <!-- Login Form -->
-<form class="space-y-lg" onsubmit="event.preventDefault();">
+<form class="space-y-lg" id="loginForm">
 <div class="space-y-base">
 <label class="font-label-md text-label-md text-on-surface-variant ml-base" for="email">Email address</label>
 <div class="relative">
@@ -224,10 +224,11 @@
 <input class="w-5 h-5 text-primary-container border-outline-variant rounded-md focus:ring-primary focus:ring-offset-0" id="remember" type="checkbox">
 <label class="font-body-md text-on-surface-variant text-sm select-none" for="remember">Remember me for 30 days</label>
 </div>
-<a href="../dashboard/dashboard.html" class="w-full py-md bg-primary-container text-on-primary-container font-button-text text-button-text rounded-xl shadow-lg shadow-primary-container/20 hover:bg-primary transition-all active:scale-[0.98] flex items-center justify-center gap-sm">
+<p class="hidden text-error text-[13px] font-body-md px-base" id="loginError"></p>
+<button class="w-full py-md bg-primary-container text-on-primary-container font-button-text text-button-text rounded-xl shadow-lg shadow-primary-container/20 hover:bg-primary transition-all active:scale-[0.98] flex items-center justify-center gap-sm" type="submit">
 <span class="">Sign in&nbsp;</span>
 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
+</button>
 </form>
 <!-- Footer -->
 <footer class="text-center">
@@ -251,5 +252,6 @@
 </section>
 </main>
 <!-- Micro-interaction Scripts -->
+<script src="../../assets/api.js"></script>
 <script src="login.js"></script>
 </body></html>

@@ -150,7 +150,7 @@
 <span class="material-symbols-outlined">headset_mic</span>
 <span class="text-label-md font-label-md">Support</span>
 </a>
-<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:text-error transition-colors" href="../login/login.html">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:text-error transition-colors" href="../login/login.html" id="logoutLink">
 <span class="material-symbols-outlined">logout</span>
 <span class="text-label-md font-label-md">Logout</span>
 </a>
@@ -188,10 +188,10 @@
 <div>
 <h3 class="text-headline-lg font-headline-lg text-on-surface mb-xs">My Certificates</h3>
 <div class="flex items-center gap-sm">
-<span class="bg-tertiary-container text-on-tertiary-container px-md py-xs rounded-full text-label-md font-label-md">
-                            3 Active Certifications
+<span class="bg-tertiary-container text-on-tertiary-container px-md py-xs rounded-full text-label-md font-label-md" id="certCount">
+                            Loading certifications&hellip;
                         </span>
-<span class="text-secondary text-body-md">Verified via AWS Partner Portal</span>
+<span class="text-secondary text-body-md">AWS Certification Catalog</span>
 </div>
 </div>
 <a class="bg-primary text-on-primary px-xl py-md rounded-xl font-button-text text-button-text shadow-sm hover:shadow-md active:scale-95 transition-all flex items-center gap-xs" href="../quiz/quize.html">
@@ -200,110 +200,7 @@
                 </a>
 </div>
 <!-- Certification Grid (Bento Style) -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl">
-<!-- Card 1: Cloud Practitioner -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all group">
-<div class="h-48 certificate-preview flex items-center justify-center p-lg relative overflow-hidden">
-<div class="absolute inset-0 opacity-10" data-alt="A subtle geometric architectural pattern with high-tech nodes and lines, representing cloud infrastructure and networking connections. Soft gray and white tones maintaining a clean professional look." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmU60KWvfhIa9FuXKDS3QMACwgDdDKalEodIVlVcilv05ITYkK0Kkv3NuDXa1P3ip_3KW5OJ7krZkUANLeJStThdvyYubPaUP4BvSOhL3Rte8ZUQvC_AuOXz57J_VjrGKQn7sN4zWKsv2CveHeI7w4LvTmVpn3b7188vc4QgSSoFIqV-LKYwCyGFLt8UwG6c-kWF3BwcBSj-uegSPiwcNVou47RroHDPEE0BhUElE7k8jp0ijpbouExvyaZjpl3n_1gZTMhyxvKYI')"></div>
-<div class="z-10 flex flex-col items-center">
-<span class="material-symbols-outlined text-primary text-[64px] mb-sm" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
-<p class="font-label-md text-primary tracking-widest uppercase">Foundational</p>
-</div>
-</div>
-<div class="p-lg flex-1 flex flex-col">
-<h4 class="text-headline-md font-headline-md mb-xs">AWS Cloud Practitioner</h4>
-<p class="text-secondary text-body-md mb-md">CLF-C02</p>
-<div class="mt-auto space-y-sm">
-<div class="grid grid-cols-2 gap-sm text-label-md font-label-md">
-<div class="bg-surface-container-low p-xs rounded-lg border border-outline-variant">
-<p class="text-on-surface-variant text-[10px] uppercase mb-[2px]">Issued</p>
-<p>May 2024</p>
-</div>
-<div class="bg-surface-container-low p-xs rounded-lg border border-outline-variant">
-<p class="text-on-surface-variant text-[10px] uppercase mb-[2px]">Expires</p>
-<p>May 2027</p>
-</div>
-</div>
-<div class="flex gap-xs">
-<button class="flex-1 bg-surface-container-highest hover:bg-outline-variant text-on-surface-variant py-xs rounded-lg font-button-text flex items-center justify-center gap-xs transition-colors">
-<span class="material-symbols-outlined text-[18px]">download</span> PDF
-                                </button>
-<button class="flex-1 bg-surface-container-highest hover:bg-outline-variant text-on-surface-variant py-xs rounded-lg font-button-text flex items-center justify-center gap-xs transition-colors">
-<span class="material-symbols-outlined text-[18px]">share</span> Share
-                                </button>
-</div>
-</div>
-</div>
-</div>
-<!-- Card 2: Solutions Architect -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all group">
-<div class="h-48 certificate-preview flex items-center justify-center p-lg relative overflow-hidden">
-<div class="absolute inset-0 opacity-10" data-alt="Abstract blueprint and grid layout representing architectural design and structure. Tech-focused aesthetic with subtle diagonal lines and professional blue-gray tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDi0yImHTwtdfGDuTDZmuksdfmX21umKcDk3QfU3SmmCok8W5caLf1l7jB2TidWW-kkC1TkuIMiIzAfVcgMwxXRAX9h1OtbHidloxXVj7S9RSptT0juPLNY6qPoyHbNkHkoUlnYBW6_QgIbUu3ka7GmEvcFlLDNqriGegNZU0KfKJNSCYhpoY5x5eObfPk7-Fzs0XGRLtFvOR5u06nLt0Q9oWx8coUvbmrTNo-wXUvyRklUkyd9DzjS4TXVoHewaheYIr-rVr_NSYQ')"></div>
-<div class="z-10 flex flex-col items-center">
-<span class="material-symbols-outlined text-primary text-[64px] mb-sm" style="font-variation-settings: 'FILL' 1;">architecture</span>
-<p class="font-label-md text-primary tracking-widest uppercase">Associate</p>
-</div>
-</div>
-<div class="p-lg flex-1 flex flex-col">
-<h4 class="text-headline-md font-headline-md mb-xs">AWS Solutions Architect</h4>
-<p class="text-secondary text-body-md mb-md">SAA-C03</p>
-<div class="mt-auto space-y-sm">
-<div class="grid grid-cols-2 gap-sm text-label-md font-label-md">
-<div class="bg-surface-container-low p-xs rounded-lg border border-outline-variant">
-<p class="text-on-surface-variant text-[10px] uppercase mb-[2px]">Issued</p>
-<p>July 2024</p>
-</div>
-<div class="bg-surface-container-low p-xs rounded-lg border border-outline-variant">
-<p class="text-on-surface-variant text-[10px] uppercase mb-[2px]">Expires</p>
-<p>July 2027</p>
-</div>
-</div>
-<div class="flex gap-xs">
-<button class="flex-1 bg-surface-container-highest hover:bg-outline-variant text-on-surface-variant py-xs rounded-lg font-button-text flex items-center justify-center gap-xs transition-colors">
-<span class="material-symbols-outlined text-[18px]">download</span> PDF
-                                </button>
-<button class="flex-1 bg-surface-container-highest hover:bg-outline-variant text-on-surface-variant py-xs rounded-lg font-button-text flex items-center justify-center gap-xs transition-colors">
-<span class="material-symbols-outlined text-[18px]">share</span> Share
-                                </button>
-</div>
-</div>
-</div>
-</div>
-<!-- Card 3: Developer -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all group">
-<div class="h-48 certificate-preview flex items-center justify-center p-lg relative overflow-hidden">
-<div class="absolute inset-0 opacity-10" data-alt="A sleek digital texture with lines of binary code and futuristic bracket symbols, evoking a high-end software development environment. Crisp white and soft orange highlights with a clean professional finish." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUh0HE2gyBYNQzeloApwPeKFcdfxZUB97pI8E0F1cZac_4AVevg7-CZHiMoo7an1wMDxYnh_h28moAi3Nv-r1xlkFZlN5zx3mJQEyMyWKLedgM0alK5r-I5fZ_CJknp-xX8RbzJZKeZ0PUUhSk5wyuzccorgX82dPCOJGYzMpegymYlQ0OlqaD1K-yrWXBDEoQ18J6X_g1TXGouDjtGN8xvrZuTN8KJmkn14aiU02qlUIqyF23LR6M1zYTTmV3tb7h6jjG85cJiEk')"></div>
-<div class="z-10 flex flex-col items-center">
-<span class="material-symbols-outlined text-primary text-[64px] mb-sm" style="font-variation-settings: 'FILL' 1;">terminal</span>
-<p class="font-label-md text-primary tracking-widest uppercase">Associate</p>
-</div>
-</div>
-<div class="p-lg flex-1 flex flex-col">
-<h4 class="text-headline-md font-headline-md mb-xs">AWS Developer Associate</h4>
-<p class="text-secondary text-body-md mb-md">DVA-C02</p>
-<div class="mt-auto space-y-sm">
-<div class="grid grid-cols-2 gap-sm text-label-md font-label-md">
-<div class="bg-surface-container-low p-xs rounded-lg border border-outline-variant">
-<p class="text-on-surface-variant text-[10px] uppercase mb-[2px]">Issued</p>
-<p>August 2024</p>
-</div>
-<div class="bg-surface-container-low p-xs rounded-lg border border-outline-variant">
-<p class="text-on-surface-variant text-[10px] uppercase mb-[2px]">Expires</p>
-<p>August 2027</p>
-</div>
-</div>
-<div class="flex gap-xs">
-<button class="flex-1 bg-surface-container-highest hover:bg-outline-variant text-on-surface-variant py-xs rounded-lg font-button-text flex items-center justify-center gap-xs transition-colors">
-<span class="material-symbols-outlined text-[18px]">download</span> PDF
-                                </button>
-<button class="flex-1 bg-surface-container-highest hover:bg-outline-variant text-on-surface-variant py-xs rounded-lg font-button-text flex items-center justify-center gap-xs transition-colors">
-<span class="material-symbols-outlined text-[18px]">share</span> Share
-                                </button>
-</div>
-</div>
-</div>
-</div>
-</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl" id="certGrid"></div>
 <!-- Specialization Badges Section -->
 <section class="mt-xl">
 <div class="flex items-center gap-md mb-lg">
@@ -395,5 +292,6 @@
 <span class="text-[10px]">Profile</span>
 </a>
 </nav>
+<script src="../../assets/api.js"></script>
 <script src="certifications.js"></script>
 </body></html>
