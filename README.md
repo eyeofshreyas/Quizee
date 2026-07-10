@@ -25,7 +25,7 @@ quizee/
 │   ├── validators/      Joi schemas
 │   └── tests/           plain Node scripts using assert, run individually
 ├── package.json         npm workspace root (server is the only member)
-└── CLAUDE.md            architecture notes for AI-assisted development
+       
 ```
 
 Not every router in `server/routes/` is wired up — check `server/app.js` for what's actually mounted.
