@@ -16,8 +16,16 @@ class ScoreCalculator {
         let wrongAnswers = 0;
         const detailedResults = [];
 
+        // ponytail: only questions actually assigned to this session count, otherwise a client
+        // could submit any question_id in the DB and inflate its score
+        const assignedQuestionIds = new Set((quizSession.questions || []).map(id => id.toString()));
+
         for (const ans of answers) {
+            if (!assignedQuestionIds.has(ans.question_id.toString())) continue;
+
             const question = await QuestionModel.findById(ans.question_id);
+            if (!question) continue;
+
             const isCorrect = question.correct_index === ans.selected_option;
 
             if (isCorrect) {
@@ -31,13 +39,15 @@ class ScoreCalculator {
                 question_id: ans.question_id,
                 selected_option: ans.selected_option,
                 is_correct: isCorrect,
-                time_taken: ans.time_taken
+                time_taken: ans.time_taken,
+                correct_index: question.correct_index,
+                explanation: question.explanation
             });
         }
 
         return {
             score,
-            totalQuestions: answers.length, // or quizSession.questions.length
+            totalQuestions: assignedQuestionIds.size,
             correctAnswers,
             wrongAnswers,
             detailedResults

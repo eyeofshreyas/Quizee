@@ -1,0 +1,22 @@
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.radar-grid {
+    stroke: #e2e8f0;
+    stroke-width: 1;
+    fill: none;
+}
+.radar-axis {
+    stroke: #cbd5e1;
+    stroke-width: 1;
+}
+.radar-area {
+    fill: rgba(255, 153, 0, 0.2);
+    stroke: #ff9900;
+    stroke-width: 2;
+}

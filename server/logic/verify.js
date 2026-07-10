@@ -4,7 +4,8 @@
 // Reuses existing seeded data (CLF-C02 cert, testuser/demouser) — no deleteMany, nothing destructive.
 require('dotenv').config();
 const assert = require('assert');
-const { connect, mongoose } = require('../../database/connection');
+const connectDB = require('../config/database');
+const mongoose = require('mongoose');
 const Certification = require('../models/Certification');
 const Question = require('../models/Question');
 const User = require('../models/User');
@@ -18,7 +19,7 @@ const timer = require('./quizEngine/timer');
 const subscriptionEngine = require('./subscription/subscriptionEngine');
 
 async function main() {
-    await connect();
+    await connectDB();
 
     const cert = await Certification.findOne({ code: 'CLF-C02' });
     const user = await User.findOne({ username: 'testuser' });
