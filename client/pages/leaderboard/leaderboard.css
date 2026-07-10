@@ -1,0 +1,20 @@
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+}
+.podium-gradient {
+    background: linear-gradient(180deg, rgba(255, 153, 0, 0.1) 0%, rgba(255, 153, 0, 0) 100%);
+}
+.pro-badge-shimmer {
+    background: linear-gradient(90deg, #FF9900, #ffb86f, #FF9900);
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+    to { background-position: 200% center; }
+}

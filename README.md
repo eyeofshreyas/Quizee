@@ -1,296 +1,46 @@
-# 🚀 Quizee – AWS Certification Preparation Platform
+# Quizee
 
-> **Master AWS Certifications with AI-Powered Learning**
+An AWS certification practice-exam platform. Practice questions and timed mock exams for CLF-C02, SAA-C03, and DVA-C02, with scoring, progress tracking, XP/badges, and leaderboards.
 
-Quizee is a modern AWS certification preparation platform designed to help learners pass AWS certification exams through intelligent practice sessions, realistic mock exams, personalized analytics, AI-powered recommendations, and gamified learning.
+## Stack
 
----
+- **Client**: static HTML/CSS/JS (no build step, no framework), Tailwind via CDN
+- **Server**: Node.js + Express, MongoDB via Mongoose
+- **Auth**: JWT bearer tokens, bcrypt password hashing
 
-# 📖 Table of Contents
+## Project structure
 
-* Overview
-* Features
-* Tech Stack
-* Project Structure
-* Team Members
-* Application Modules
-* Database
-* Business Logic
-* Installation
-* Environment Variables
-* API Modules
-* Future Roadmap
-* License
-
----
-
-# 🎯 Overview
-
-Quizee is built to simulate the real AWS certification exam experience while helping users identify weak domains and improve through adaptive learning.
-
-Supported certifications include:
-
-* AWS Cloud Practitioner (CLF-C02)
-* AWS Solutions Architect Associate (SAA-C03)
-* AWS Developer Associate (DVA-C02)
-
-Future certifications:
-
-* AWS SysOps Administrator
-* AWS DevOps Engineer Professional
-* AWS Security Specialty
-* AWS Machine Learning Specialty
-
----
-
-# ✨ Features
-
-## Authentication
-
-* User Registration
-* Secure Login
-* JWT Authentication
-* Password Encryption
-* Profile Management
-
----
-
-## Learning
-
-* Practice Mode
-* Mock Exams
-* Domain-wise Learning
-* AI Tutor (Planned)
-* AI Recommendations
-* Personalized Learning Path
-
----
-
-## Analytics
-
-* Accuracy Tracking
-* Domain Performance
-* Study Streak
-* Readiness Score
-* Progress Dashboard
-
----
-
-## Gamification
-
-* XP System
-* Levels
-* Badges
-* Leaderboards
-* Daily Challenges
-
----
-
-## Subscription
-
-* Free Plan
-* Professional Plan
-* Premium Analytics
-* Unlimited Mock Exams
-
----
-
-# 🛠 Tech Stack
-
-## Frontend
-
-* HTML5
-* CSS3
-* JavaScript (ES6)
-
-## Backend
-
-* Node.js
-* Express.js
-
-## Database
-
-* MongoDB
-* Mongoose
-
-## Authentication
-
-* JWT
-* bcrypt
-
-
-
-# 📁 Project Structure
-
-```text
+```
 quizee/
-│
-├── client/
-│   ├── assets/
-│   ├── css/
-│   ├── js/
-│   ├── pages/
-│   ├── components/
-│   └── index.html
-│
+├── client/              static pages, one folder per screen under pages/
+│   ├── assets/          shared api.js fetch layer, images
+│   └── pages/           login, register, dashboard, quiz, progress, leaderboard, profile, subscription, certifications
 ├── server/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── services/
-│   ├── logic/
-│   │   ├── quizEngine.js
-│   │   ├── scoringEngine.js
-│   │   ├── progressEngine.js
-│   │   ├── badgeEngine.js
-│   │   ├── leaderboardEngine.js
-│   │   ├── recommendationEngine.js
-│   │   └── subscriptionEngine.js
-│   │
-│   ├── app.js
-│   └── server.js
-│
-├── database/
-│
-├── docs/
-│
-├── package.json
-└── README.md
+│   ├── routes/          Express routers (auth, quiz, progress, leaderboard, badges, certifications, subscription, payments)
+│   ├── controllers/     thin HTTP handlers, delegate to services
+│   ├── services/        adapt HTTP params to logic engines
+│   ├── logic/           business rules — quizEngine, scoring, progress, xp, badges, leaderboard, recommendation, subscription
+│   ├── models/          Mongoose schemas
+│   ├── middleware/      JWT auth (protect), request validation
+│   ├── validators/      Joi schemas
+│   └── tests/           plain Node scripts using assert, run individually
+├── package.json         npm workspace root (server is the only member)
+└── CLAUDE.md            architecture notes for AI-assisted development
 ```
 
+Not every router in `server/routes/` is wired up — check `server/app.js` for what's actually mounted.
 
----
+## Running it
 
-# 🧩 Core Modules
-
-## User Management
-
-* Registration
-* Login
-* Profile
-* Authentication
-
----
-
-## Certification Module
-
-* Certification Catalog
-* Domain Management
-* Enrollment
-* Progress Tracking
-
----
-
-## Quiz Engine
-
-* Practice Quiz
-* Mock Exams
-* Question Navigator
-* Timer
-* Auto Submit
-
----
-
-## Progress Engine
-
-* Accuracy
-* Study Time
-* Readiness
-* Domain Performance
-
----
-
-## Gamification Engine
-
-* XP
-* Levels
-* Streaks
-* Badges
-* Leaderboard
-
----
-
-## AI Engine (Planned)
-
-* AI Tutor
-* AI Explanations
-* AI Recommendations
-* Adaptive Practice
-
----
-
-# 🗄 Database Collections
-
-* Users
-* Certifications
-* Domains
-* Questions
-* Attempts
-* User Progress
-* Leaderboards
-* Mock Tests
-* Subscription Plans
-* Payments
-* Badges
-* User Badges
-
----
-
-# 📋 Business Logic
-
-The application follows dedicated logic engines:
-
-* Authentication Logic
-* Certification Logic
-* Quiz Engine
-* Question Selection Logic
-* Timer Logic
-* Scoring Engine
-* Progress Engine
-* XP Engine
-* Badge Engine
-* Streak Engine
-* Leaderboard Engine
-* Subscription Engine
-* AI Recommendation Engine
-
-Business logic documentation is available in the **docs/** directory.
-
----
-
-# ⚙️ Installation
-
-Clone the repository
-
-```bash
-git clone <repository-url>
-```
-
-Install dependencies
+**Backend** (from repo root):
 
 ```bash
 npm install
+npm run dev      # nodemon server.js
+# or: npm start  # node server.js
 ```
 
-Run the server
-
-```bash
-npm start
-```
-
-Development mode
-
-```bash
-npm run dev
-```
-
----
-
-# 🔐 Environment Variables
-
-Create a `.env` file:
+Requires `server/.env` (or root `.env`) with:
 
 ```env
 PORT=5000
@@ -299,64 +49,28 @@ JWT_SECRET=your_secret_key
 NODE_ENV=development
 ```
 
----
+**Frontend** — plain static files, serve them (don't open via `file://`, the client fetches `http://localhost:5000/api` and needs a real origin):
 
-# 📡 API Modules
+```bash
+npx serve client
+```
 
-* Authentication API
-* User API
-* Certification API
-* Questions API
-* Quiz API
-* Progress API
-* Leaderboard API
-* Subscription API
-* Payment API
+## Testing
 
----
+No test framework is installed. Tests live in `server/tests/*.test.js` and run individually with Node's built-in `assert`:
 
-# 🚀 Roadmap
+```bash
+node server/tests/atomicUpdates.test.js
+node server/tests/auth.test.js
+node server/tests/quizConcurrency.test.js
+node server/tests/quiz.test.js
+node server/tests/scoreCalculator.test.js
+```
 
-## Phase 1
+Some mock Mongoose model methods in-process and need no DB; others hit real MongoDB.
 
-* User Authentication
-* Dashboard
-* Practice Mode
-* Mock Exams
-* Analytics
+`npm run verify` runs `server/logic/verify.js`, an end-to-end smoke test against the real configured MongoDB using seeded data — exercises the full create → answer → submit → score → progress → subscription-limit flow. Non-destructive.
 
-## Phase 2
+## License
 
-* Leaderboards
-* Badges
-* Subscription System
-* AI Recommendations
-
-## Phase 3
-
-* AI Tutor
-* Adaptive Learning
-* Flashcards
-* Daily Challenges
-* Mobile Responsive UI
-
-## Phase 4
-
-* Multi-Cloud Certifications
-* Community Features
-* Study Groups
-* Discussion Forums
-
----
-
-# 🤝 Contributing
-
-Contributions, feature requests, and bug reports are welcome. Please follow the project's coding standards and create a pull request for review.
-
----
-
-# 📄 License
-
-This project is developed for educational purposes and portfolio demonstration.
-
-AWS is a trademark of Amazon Web Services. Quizee is an independent learning platform and is not affiliated with or endorsed by Amazon Web Services.
+Built for educational purposes and portfolio demonstration. AWS is a trademark of Amazon Web Services; Quizee is not affiliated with or endorsed by AWS.

@@ -1,0 +1,29 @@
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    box-shadow: 0px 4px 20px rgba(35, 47, 62, 0.05);
+}
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+.bento-item {
+    grid-column: span 12;
+}
+@media (min-width: 768px) {
+    .bento-item-4 { grid-column: span 4; }
+    .bento-item-6 { grid-column: span 6; }
+    .bento-item-8 { grid-column: span 8; }
+}
+.floating-element {
+    animation: floating 3s ease-in-out infinite;
+}
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}

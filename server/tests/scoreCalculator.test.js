@@ -8,8 +8,8 @@ const assignedId = '507f1f77bcf86cd799439011';
 const outsideId = '507f1f77bcf86cd799439099'; // not part of the session
 
 const questions = {
-  [assignedId]: { correct_index: 2 },
-  [outsideId]: { correct_index: 0 }
+  [assignedId]: { correct_index: 2, explanation: 'Because AWS Shield handles DDoS.' },
+  [outsideId]: { correct_index: 0, explanation: 'n/a' }
 };
 
 QuestionModel.findById = async (id) => questions[id.toString()] || null;
@@ -37,6 +37,14 @@ async function run() {
     []
   );
   assert.strictEqual(partial.totalQuestions, 2);
+
+  // detailedResults must carry the answer key so the client can show it post-submit
+  const detailed = await scoreCalculator.calculate(quizSession, [
+    { question_id: assignedId, selected_option: 0 }
+  ]);
+  assert.strictEqual(detailed.detailedResults[0].correct_index, 2);
+  assert.strictEqual(detailed.detailedResults[0].explanation, 'Because AWS Shield handles DDoS.');
+  assert.strictEqual(detailed.detailedResults[0].is_correct, false);
 
   console.log('scoreCalculator self-check passed');
 }
